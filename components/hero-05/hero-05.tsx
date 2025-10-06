@@ -59,7 +59,7 @@ const Hero05 = () => {
             by="word"
             delay={0.3}
             duration={0.8}
-            className="mt-6 text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem] font-semibold leading-tight tracking-tight"
+            className="mt-6 text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem] font-bold leading-tight tracking-tight"
             as="h1"
           >
             Solusi Energi Industri yang Terbukti
