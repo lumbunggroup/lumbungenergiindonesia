@@ -23,10 +23,10 @@ export function CTASection() {
       <Container>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 text-primary-foreground">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="mb-6 text-primary-foreground">
               Mulai Proyek Energi Anda Bersama Kami
             </h2>
-            <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto">
+            <p className="max-w-3xl mx-auto text-primary-foreground/90">
               Konsultasi gratis, penawaran kompetitif, dan solusi yang disesuaikan dengan kebutuhan spesifik Anda
             </p>
           </div>

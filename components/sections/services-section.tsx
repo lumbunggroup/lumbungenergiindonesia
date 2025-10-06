@@ -77,10 +77,10 @@ export function ServicesSection() {
             <Zap className="h-3 w-3 mr-1" />
             Layanan Terintegrasi
           </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="mb-6">
             Solusi <span className="text-primary">One-Stop</span> untuk Industri Anda
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto">
             Dari pengadaan hingga maintenance, kami menyediakan layanan komprehensif yang disesuaikan dengan kebutuhan spesifik proyek Anda.
           </p>
         </div>
@@ -103,10 +103,10 @@ export function ServicesSection() {
                   </div>
                   
                   {/* Title & Description */}
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                  <h4 className="mb-3 group-hover:text-primary transition-colors">
                     {service.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  </h4>
+                  <p className="mb-6 text-base">
                     {service.description}
                   </p>
                   

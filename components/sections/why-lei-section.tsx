@@ -75,10 +75,10 @@ export function WhyLEISection() {
             <Sparkles className="h-3 w-3 mr-1" />
             Keunggulan Kompetitif
           </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="mb-6">
             Mengapa Memilih <span className="text-primary">Lumbung Energi Indonesia</span>?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto">
             Lebih dari sekadar vendor—kami adalah mitra strategis yang berkomitmen pada kesuksesan proyek Anda
           </p>
         </div>
@@ -119,10 +119,10 @@ export function WhyLEISection() {
                   <Icon className="h-7 w-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  <h4 className="mb-3 group-hover:text-primary transition-colors">
                     {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  </h4>
+                  <p className="text-base">
                     {benefit.description}
                   </p>
                 </div>

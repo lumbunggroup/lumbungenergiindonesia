@@ -1,25 +1,21 @@
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { HeroSection } from "@/components/sections/hero-section"
-import { ClientsSection } from "@/components/sections/clients-section"
-import { ServicesSection } from "@/components/sections/services-section"
-import { StatsSection } from "@/components/sections/stats-section"
+import Hero05 from "@/components/hero-05/hero-05"
+import { DivisionsSection } from "@/components/sections/divisions-section"
+import { FeaturesSection } from "@/components/sections/features-section"
 import { CredibilitySection } from "@/components/sections/credibility-section"
-import { CTASection } from "@/components/sections/cta-section"
-import { ContactFormSection } from "@/components/sections/contact-form-section"
+import { ContactFormLEI } from "@/components/contact-form-lei"
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1">
-        <HeroSection />
-        <ClientsSection />
-        <ServicesSection />
-        <StatsSection />
+        <Hero05 />
+        <DivisionsSection />
+        <FeaturesSection />
         <CredibilitySection />
-        <CTASection />
-        <ContactFormSection />
+        <ContactFormLEI />
       </main>
       <Footer />
     </div>

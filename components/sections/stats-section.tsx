@@ -70,13 +70,13 @@ export function StatsSection() {
       <Container>
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="mb-4">
             Mengapa Memilih{" "}
             <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               Lumbung Energi Indonesia
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto">
             Komitmen kami untuk memberikan solusi energi industri yang aman, efisien, dan sesuai regulasi.
           </p>
         </div>

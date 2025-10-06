@@ -46,60 +46,60 @@ export function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">L</span>
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-base">L</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-base leading-tight">
+                  <span className="font-bold text-lg leading-tight">
                     Lumbung Energi
                   </span>
-                  <span className="text-xs text-muted-foreground leading-tight">
+                  <span className="text-sm text-muted-foreground leading-tight">
                     Indonesia
                   </span>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+              <p className="text-sm text-muted-foreground mb-6 max-w-sm leading-relaxed">
                 Solusi energi industri yang terpercaya. Dari pengadaan hingga maintenance, kami siap mendukung kebutuhan energi Anda.
               </p>
               
               {/* Contact Info */}
-              <div className="space-y-3 text-sm">
-                <div className="flex items-start gap-2">
-                  <Mail className="h-4 w-4 mt-0.5 text-muted-foreground" />
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Mail className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
                   <a 
                     href="mailto:sales@lumbungenergi.id" 
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     sales@lumbungenergi.id
                   </a>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Phone className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                <div className="flex items-start gap-3">
+                  <Phone className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
                   <a 
                     href="tel:+62XXXXXXXXXX" 
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     +62-XXX-XXXX-XXXX
                   </a>
                 </div>
-                <div className="flex items-start gap-2">
-                  <MapPin className="h-4 w-4 mt-0.5 text-muted-foreground" />
-                  <p className="text-muted-foreground">
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground">
                     Jakarta, Indonesia
-                  </p>
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Layanan */}
             <div>
-              <h3 className="font-semibold mb-4">Layanan</h3>
-              <ul className="space-y-3 text-sm">
+              <h4 className="font-semibold mb-4 text-foreground">Layanan</h4>
+              <ul className="space-y-3">
                 {footerLinks.product.map((link) => (
                   <li key={link.name}>
                     <button
                       onClick={() => scrollToSection(link.href)}
-                      className="text-muted-foreground hover:text-foreground transition-colors text-left"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
                     >
                       {link.name}
                     </button>
@@ -110,13 +110,13 @@ export function Footer() {
 
             {/* Perusahaan */}
             <div>
-              <h3 className="font-semibold mb-4">Perusahaan</h3>
-              <ul className="space-y-3 text-sm">
+              <h4 className="font-semibold mb-4 text-foreground">Perusahaan</h4>
+              <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
                     <button
                       onClick={() => scrollToSection(link.href)}
-                      className="text-muted-foreground hover:text-foreground transition-colors text-left"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
                     >
                       {link.name}
                     </button>
@@ -127,13 +127,13 @@ export function Footer() {
 
             {/* Legal */}
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-3 text-sm">
+              <h4 className="font-semibold mb-4 text-foreground">Legal</h4>
+              <ul className="space-y-3">
                 {footerLinks.legal.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -144,8 +144,8 @@ export function Footer() {
           </div>
 
           {/* Bottom Section */}
-          <div className="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground text-center md:text-left">
               © {new Date().getFullYear()} PT Lumbung Energi Indonesia. Hak Cipta Dilindungi.
             </p>
             
@@ -157,7 +157,7 @@ export function Footer() {
                   <a
                     key={social.name}
                     href={social.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-all hover:scale-110"
                     aria-label={social.name}
                   >
                     <Icon className="h-5 w-5" />

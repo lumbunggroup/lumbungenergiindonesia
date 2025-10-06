@@ -46,14 +46,14 @@ export function HeroSection() {
 
           {/* Main Headline */}
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1>
               Solusi Energi Industri{" "}
               <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                 yang Terbukti
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="max-w-3xl mx-auto">
               Kami membantu proyek Anda berjalan aman, tepat waktu, dan sesuai regulasi—dengan tim berpengalaman dan standar mutu yang konsisten.
             </p>
           </div>
