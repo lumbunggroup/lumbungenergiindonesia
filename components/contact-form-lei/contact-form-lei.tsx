@@ -25,7 +25,7 @@ export function ContactFormLEI() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
@@ -278,7 +278,7 @@ export function ContactFormLEI() {
                   id="topic"
                   name="topic"
                   value={formData.topic}
-                  onChange={handleChange as any}
+                  onChange={handleChange}
                   className="h-12 text-base w-full rounded-md border border-input bg-background px-3 py-2"
                 >
                   <option value="">Pilih topik</option>

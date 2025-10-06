@@ -3,7 +3,7 @@
 import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
 import { Badge } from "@/components/ui/badge"
-import { Package, Wrench, Headphones, Lightbulb, ArrowRight, Zap, Settings, Users } from "lucide-react"
+import { Package, Wrench, Lightbulb, ArrowRight, Zap, Settings, Users } from "lucide-react"
 
 const services = [
   {

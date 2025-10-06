@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
           "Cache-Control": "public, max-age=3600",
         },
       })
-    } catch (fileError) {
+    } catch {
       // If file doesn't exist, return a message
       // For MVP, you need to add the actual PDF file to public/documents/company-profile.pdf
       return NextResponse.json(

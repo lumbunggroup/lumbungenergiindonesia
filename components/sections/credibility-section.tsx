@@ -1,10 +1,9 @@
 "use client"
 
-import Image from "next/image"
 import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
 import { Badge } from "@/components/ui/badge"
-import { Quote, Award, Users, Star, Shield, CheckCircle2 } from "lucide-react"
+import { Quote, Users, Star } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
 import { TextAnimate } from "@/components/ui/text-animate"
 import { motion } from "motion/react"
@@ -43,18 +42,7 @@ const testimonials = [
   },
 ]
 
-
-
 export function CredibilitySection() {
-  const partnerLogos = [
-    "Pertamina",
-    "PLN",
-    "Pupuk Indonesia",
-    "Semen Indonesia",
-    "Krakatau Steel",
-    "Freeport",
-  ]
-
   return (
     <Section className="relative overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background">
       {/* Decorative Background */}

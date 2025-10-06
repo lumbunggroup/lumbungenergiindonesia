@@ -47,10 +47,10 @@ export function ContactFormSection() {
         toast.success("Terima kasih! Tim kami akan menghubungi Anda segera.")
         form.reset()
       } else {
-        const error = await response.json()
-        toast.error(error.message || "Maaf, terjadi kendala. Silakan coba lagi atau hubungi via WhatsApp.")
+        const errorData = await response.json()
+        toast.error(errorData.message || "Maaf, terjadi kendala. Silakan coba lagi atau hubungi via WhatsApp.")
       }
-    } catch (error) {
+    } catch {
       toast.error("Maaf, terjadi kendala. Silakan coba lagi atau hubungi via WhatsApp.")
     } finally {
       setIsSubmitting(false)
