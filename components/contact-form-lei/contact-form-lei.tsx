@@ -6,8 +6,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MessageSquare, Phone, Mail } from "lucide-react"
 import Link from "next/link"
-import { TextAnimate } from "@/components/ui/text-animate"
-import { motion } from "motion/react"
 
 export function ContactFormLEI() {
   const [formData, setFormData] = useState({
@@ -38,150 +36,73 @@ export function ContactFormLEI() {
           {/* Left Side - Contact Info */}
           <div className="space-y-12">
             <div>
-              <TextAnimate
-                animation="blurInUp"
-                by="word"
-                delay={0.1}
-                duration={0.4}
-                startOnView
-                once
-                className="text-sm mb-2"
-                as="p"
-              >
+              <p className="text-sm mb-2">
                 Hubungi Tim Kami
-              </TextAnimate>
-              <TextAnimate
-                animation="blurInUp"
-                by="word"
-                delay={0.3}
-                duration={0.6}
-                startOnView
-                once
-                as="h2"
-              >
+              </p>
+              <h2>
                 Siap Membawa Proyek Anda ke Tahap Berikutnya?
-              </TextAnimate>
+              </h2>
             </div>
 
             {/* Contact Info Cards */}
             <div className="space-y-8">
               {/* Address */}
-              <motion.div 
-                className="flex gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
+              <div className="flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-14 h-14 rounded-full bg-card flex items-center justify-center">
                     <MessageSquare className="w-6 h-6 text-primary" />
                   </div>
                 </div>
                 <div className="flex-1">
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="word"
-                    delay={0.1}
-                    duration={0.5}
-                    startOnView
-                    once
-                    className="mb-2"
-                    as="h4"
-                  >
+                  <h4 className="mb-2">
                     Kunjungi Kantor Kami
-                  </TextAnimate>
+                  </h4>
                   <p className="text-base">
                     PT Lumbung Energi Indonesia
                   </p>
                   <p className="text-base">Jakarta, Indonesia</p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Phone */}
-              <motion.div 
-                className="flex gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
+              <div className="flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-14 h-14 rounded-full bg-card flex items-center justify-center">
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                 </div>
                 <div className="flex-1">
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="word"
-                    delay={0.1}
-                    duration={0.5}
-                    startOnView
-                    once
-                    className="mb-2"
-                    as="h4"
-                  >
+                  <h4 className="mb-2">
                     Hubungi Kami Langsung
-                  </TextAnimate>
+                  </h4>
                   <p className="text-base">Telepon: +62-XXX-XXXX-XXXX</p>
                   <p className="text-base">Fax: +62-XXX-XXXX-XXXX</p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Email */}
-              <motion.div 
-                className="flex gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
+              <div className="flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-14 h-14 rounded-full bg-card flex items-center justify-center">
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                 </div>
                 <div className="flex-1">
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="word"
-                    delay={0.1}
-                    duration={0.5}
-                    startOnView
-                    once
-                    className="mb-2"
-                    as="h4"
-                  >
+                  <h4 className="mb-2">
                     Email Kami
-                  </TextAnimate>
+                  </h4>
                   <p className="text-base">sales@lumbungenergi.id</p>
                   <p className="text-base">info@lumbungenergi.id</p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
 
           {/* Right Side - Form */}
-          <motion.div 
-            className="bg-card rounded-2xl shadow-lg p-8 lg:p-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <TextAnimate
-              animation="blurInUp"
-              by="word"
-              delay={0.1}
-              duration={0.6}
-              startOnView
-              once
-              className="mb-8"
-              as="h2"
-            >
+          <div className="bg-card rounded-2xl shadow-lg p-8 lg:p-10">
+            <h2 className="mb-8">
               Kirim Permintaan Anda
-            </TextAnimate>
+            </h2>
             <p className="text-muted-foreground mb-6">
               Isi formulir di bawah ini atau chat WhatsApp untuk respons lebih cepat.
             </p>
@@ -330,7 +251,7 @@ export function ContactFormLEI() {
                 kami.
               </p>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

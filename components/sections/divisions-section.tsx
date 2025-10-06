@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { TextAnimate } from "@/components/ui/text-animate"
-import { motion } from "motion/react"
 
 const divisions = [
   {
@@ -47,39 +45,17 @@ export function DivisionsSection() {
       
       <Container>
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <Badge variant="outline" className="mb-4">
               🏢 Divisi Kami
             </Badge>
-          </motion.div>
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            delay={0.1}
-            duration={0.6}
-            startOnView
-            once
-            as="h2"
-          >
+          </div>
+          <h2>
             Perkuat Strategi Bisnis Anda
-          </TextAnimate>
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            delay={0.3}
-            duration={0.8}
-            startOnView
-            once
-            className="mt-4 max-w-3xl mx-auto"
-            as="p"
-          >
+          </h2>
+          <p className="mt-4 max-w-3xl mx-auto">
             Tingkatkan strategi Anda dengan solusi terintegrasi yang dirancang untuk kesuksesan industri.
-          </TextAnimate>
+          </p>
         </div>
 
         <div className="mt-8 md:mt-16 w-full mx-auto space-y-20">
@@ -88,63 +64,25 @@ export function DivisionsSection() {
               key={division.category}
               className="flex flex-col md:flex-row items-center gap-x-12 gap-y-6 md:even:flex-row-reverse"
             >
-              <motion.div 
-                className="w-full aspect-[4/3] rounded-xl border border-border/50 basis-1/2 overflow-hidden relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+              <div className="w-full aspect-[4/3] rounded-xl border border-border/50 basis-1/2 overflow-hidden relative">
                 <Image
                   src={division.image}
                   alt={division.title}
                   fill
                   className="object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="basis-1/2 shrink-0">
-                <TextAnimate
-                  animation="blurInUp"
-                  by="word"
-                  delay={0.1}
-                  duration={0.4}
-                  startOnView
-                  once
-                  className="uppercase font-medium text-sm text-muted-foreground"
-                  as="span"
-                >
+                <span className="uppercase font-medium text-sm text-muted-foreground">
                   {division.category}
-                </TextAnimate>
-                <TextAnimate
-                  animation="blurInUp"
-                  by="word"
-                  delay={0.3}
-                  duration={0.6}
-                  startOnView
-                  once
-                  className="my-3"
-                  as="h3"
-                >
+                </span>
+                <h3 className="my-3">
                   {division.title}
-                </TextAnimate>
-                <TextAnimate
-                  animation="blurInUp"
-                  by="word"
-                  delay={0.5}
-                  duration={0.8}
-                  startOnView
-                  once
-                  className="text-base"
-                  as="p"
-                >
+                </h3>
+                <p className="text-base">
                   {division.details}
-                </TextAnimate>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                >
+                </p>
+                <div>
                   <Button asChild size="lg" className="mt-6">
                   <Link 
                     href={division.ctaLink}
@@ -159,7 +97,7 @@ export function DivisionsSection() {
                     Pelajari Lebih Lanjut <ArrowRight />
                   </Link>
                 </Button>
-                </motion.div>
+                </div>
               </div>
             </div>
           ))}

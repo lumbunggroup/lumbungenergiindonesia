@@ -5,8 +5,6 @@ import { Section } from "@/components/layout/section"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Flame, Sun, Truck, Cog, Shield, Headphones } from "lucide-react"
-import { TextAnimate } from "@/components/ui/text-animate"
-import { motion } from "motion/react"
 import Image from "next/image"
 
 const features = [
@@ -64,78 +62,33 @@ const Features05 = () => {
       
       <Container>
         <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <Badge variant="outline" className="mb-4">
               ⚡ Layanan Terintegrasi
             </Badge>
-          </motion.div>
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            delay={0.1}
-            duration={0.6}
-            startOnView
-            once
-            as="h2"
-          >
+          </div>
+          <h2>
             Solusi One-Stop untuk Industri Anda
-          </TextAnimate>
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            delay={0.3}
-            duration={0.8}
-            startOnView
-            once
-            className="mt-4 max-w-3xl mx-auto"
-            as="p"
-          >
+          </h2>
+          <p className="mt-4 max-w-3xl mx-auto">
             Dari pengadaan hingga maintenance, kami menyediakan layanan komprehensif yang disesuaikan dengan kebutuhan spesifik proyek Anda.
-          </TextAnimate>
+          </p>
         </div>
 
         <div className="mt-10 w-full mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
           {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
+            <div key={feature.title}>
               <Card className="flex flex-col h-full border rounded-xl overflow-hidden shadow-none pb-0 hover:shadow-lg hover:shadow-primary/5 transition-all hover:-translate-y-1">
               <CardHeader className="flex-1">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
-                <TextAnimate
-                  animation="blurInUp"
-                  by="word"
-                  delay={0.1}
-                  duration={0.5}
-                  startOnView
-                  once
-                  as="h4"
-                >
+                <h4>
                   {feature.title}
-                </TextAnimate>
-                <TextAnimate
-                  animation="blurInUp"
-                  by="word"
-                  delay={0.3}
-                  duration={0.7}
-                  startOnView
-                  once
-                  className="mt-2 text-base min-h-[4.5rem]"
-                  as="p"
-                >
+                </h4>
+                <p className="mt-2 text-base min-h-[4.5rem]">
                   {feature.description}
-                </TextAnimate>
+                </p>
               </CardHeader>
               <CardContent className="mt-auto px-0 pb-0">
                 <div className="relative h-40 ml-6 rounded-tl-xl overflow-hidden">
@@ -148,7 +101,7 @@ const Features05 = () => {
                 </div>
               </CardContent>
             </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>

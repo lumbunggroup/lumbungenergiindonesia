@@ -295,91 +295,7 @@ All semantic tokens automatically support dark mode:
 
 ---
 
-## 10. Animation Patterns (MANDATORY)
-
-### Text Animations:
-**ALWAYS use TextAnimate component for text with BlurInUp animation.**
-
-```tsx
-import { TextAnimate } from "@/components/ui/text-animate"
-
-// ✅ CORRECT: Heading with animation
-<TextAnimate
-  animation="blurInUp"
-  by="word"
-  delay={0.1}
-  duration={0.6}
-  startOnView
-  once
-  as="h2"
->
-  Section Title
-</TextAnimate>
-
-// ✅ CORRECT: Paragraph with animation
-<TextAnimate
-  animation="blurInUp"
-  by="word"
-  delay={0.3}
-  duration={0.8}
-  startOnView
-  once
-  className="mt-4 max-w-3xl mx-auto"
-  as="p"
->
-  Description text here
-</TextAnimate>
-```
-
-### Non-Text Animations (SlideUp):
-**Use motion.div from framer-motion for components, cards, images, badges, buttons.**
-
-```tsx
-import { motion } from "motion/react"
-
-// ✅ CORRECT: Badge animation
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5 }}
->
-  <Badge variant="outline">Section Label</Badge>
-</motion.div>
-
-// ✅ CORRECT: Card animation with stagger
-{features.map((feature, index) => (
-  <motion.div
-    key={feature.title}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-  >
-    <Card>...</Card>
-  </motion.div>
-))}
-
-// ✅ CORRECT: Image animation
-<motion.div 
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.2 }}
->
-  <Image src="..." alt="..." fill />
-</motion.div>
-```
-
-### Animation Timing Guidelines:
-- **Text delays**: Start at 0.1s, increment by 0.2s (0.1, 0.3, 0.5, 0.7)
-- **Card stagger**: Use `index * 0.1` or `index * 0.15`
-- **Duration**: 0.5-0.8s for smooth animations
-- **Always use**: `viewport={{ once: true }}` for performance
-- **Always use**: `startOnView` for scroll-triggered animations
-
----
-
-## 11. Layout Structure (MANDATORY)
+## 10. Layout Structure (MANDATORY)
 
 ### Section Pattern:
 **Every major section MUST follow this structure:**
@@ -396,15 +312,13 @@ import { Container } from "@/components/layout/container"
   <Container>
     {/* Section Header */}
     <div className="text-center mb-12">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+      <div>
         <Badge variant="outline" className="mb-4">Section Label</Badge>
-      </motion.div>
-      <TextAnimate animation="blurInUp" by="word" delay={0.1} duration={0.6} startOnView once as="h2">
-        Section Title
-      </TextAnimate>
-      <TextAnimate animation="blurInUp" by="word" delay={0.3} duration={0.8} startOnView once className="mt-4 max-w-3xl mx-auto" as="p">
+      </div>
+      <h2>Section Title</h2>
+      <p className="mt-4 max-w-3xl mx-auto">
         Section description
-      </TextAnimate>
+      </p>
     </div>
     
     {/* Section Content */}
@@ -435,7 +349,7 @@ export default function Page() {
 
 ---
 
-## 12. Image Handling (MANDATORY)
+## 11. Image Handling (MANDATORY)
 
 **ALWAYS use Next.js Image component for images.**
 
@@ -462,14 +376,9 @@ import Image from "next/image"
 />
 
 // ✅ CORRECT: Responsive hero image
-<motion.div 
-  className="w-full aspect-video lg:aspect-auto lg:h-screen rounded-xl overflow-hidden relative"
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.2 }}
->
+<div className="w-full aspect-video lg:aspect-auto lg:h-screen rounded-xl overflow-hidden relative">
   <Image src="..." alt="..." fill className="object-cover" priority />
-</motion.div>
+</div>
 ```
 
 ### Image Requirements:
@@ -481,7 +390,7 @@ import Image from "next/image"
 
 ---
 
-## 13. Responsive Design Patterns
+## 12. Responsive Design Patterns
 
 ### Grid Layouts:
 ```tsx
@@ -517,35 +426,30 @@ space-y-4 lg:space-y-6 // Vertical spacing
 
 ---
 
-## 14. Card Symmetry (MANDATORY)
+## 13. Card Symmetry (MANDATORY)
 
 **All cards in a grid MUST have equal height.**
 
 ```tsx
 // ✅ CORRECT: Symmetric cards
-<motion.div
-  className="h-full" // Parent takes full grid height
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5, delay: index * 0.1 }}
->
+<div className="h-full"> // Parent takes full grid height
   <Card className="flex flex-col h-full">
     <CardHeader className="flex-1">
       {/* Icon and title */}
-      <TextAnimate className="min-h-[4.5rem]" as="p">
+      <h4>Card Title</h4>
+      <p className="min-h-[4.5rem]">
         {description}
-      </TextAnimate>
+      </p>
     </CardHeader>
     <CardContent className="mt-auto">
       {/* Bottom content */}
     </CardContent>
   </Card>
-</motion.div>
+</div>
 ```
 
 ### Symmetry Rules:
-1. Add `h-full` to both motion.div wrapper and Card
+1. Add `h-full` to both wrapper div and Card
 2. Use `flex flex-col` on Card
 3. Add `flex-1` to CardHeader for flexible content area
 4. Use `min-h-[...]` on text to ensure minimum height
@@ -553,7 +457,7 @@ space-y-4 lg:space-y-6 // Vertical spacing
 
 ---
 
-## 15. Language & Content Standards
+## 14. Language & Content Standards
 
 **All content MUST be in Bahasa Indonesia (Indonesian language).**
 
@@ -581,7 +485,7 @@ space-y-4 lg:space-y-6 // Vertical spacing
 
 ---
 
-## 16. Component Organization
+## 15. Component Organization
 
 ### File Structure:
 ```
@@ -625,19 +529,17 @@ export default ComponentName
 ✅ **DO**: 
 - Use semantic tokens for colors
 - Use semantic HTML for typography
-- Use TextAnimate with BlurInUp for text
-- Use motion.div with slideUp for components
 - Follow Section + Container pattern
 - Use Next.js Image component
 - Ensure card symmetry with h-full and flex
 - Write all content in Indonesian
 - Use shadcn/ui components
+- Use consistent spacing and layout patterns
 
 ❌ **DON'T**: 
 - Use hardcoded colors
 - Use custom button styles
-- Mix animation types (text gets BlurInUp, components get slideUp)
-- Forget viewport={{ once: true }} for performance
 - Use raw img tags (use Next.js Image)
 - Create asymmetric cards in grids
 - Use English for user-facing content
+- Override typography styles unnecessarily

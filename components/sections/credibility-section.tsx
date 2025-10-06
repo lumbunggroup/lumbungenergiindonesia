@@ -5,8 +5,6 @@ import { Section } from "@/components/layout/section"
 import { Badge } from "@/components/ui/badge"
 import { Quote, Users, Star } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
-import { TextAnimate } from "@/components/ui/text-animate"
-import { motion } from "motion/react"
 import {
   Logo01,
   Logo02,
@@ -52,51 +50,22 @@ export function CredibilitySection() {
       <Container>
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <Badge variant="outline" className="mb-4">
               <Users className="h-3 w-3 mr-1" />
               Testimoni & Kredibilitas
             </Badge>
-          </motion.div>
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            delay={0.1}
-            duration={0.6}
-            startOnView
-            once
-            className="mb-6"
-            as="h2"
-          >
+          </div>
+          <h2 className="mb-6">
             Dipercaya oleh 500+ Perusahaan
-          </TextAnimate>
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            delay={0.3}
-            duration={0.8}
-            startOnView
-            once
-            className="max-w-3xl mx-auto"
-            as="p"
-          >
+          </h2>
+          <p className="max-w-3xl mx-auto">
             Bergabung dengan perusahaan-perusahaan terkemuka yang mempercayai kami untuk solusi energi mereka
-          </TextAnimate>
+          </p>
         </div>
 
         {/* Client Logos - Marquee */}
-        <motion.div 
-          className="mb-20 overflow-hidden"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
+        <div className="mb-20 overflow-hidden">
           <div className="space-y-8">
             <Marquee
               pauseOnHover
@@ -126,20 +95,13 @@ export function CredibilitySection() {
               <Logo08 />
             </Marquee>
           </div>
-        </motion.div>
+        </div>
 
         {/* Testimonials Grid */}
         <div className="mb-20">
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="h-full"
-              >
+              <div key={index} className="h-full">
                 <div className="group relative h-full flex flex-col bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all hover:-translate-y-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
                 
@@ -155,39 +117,21 @@ export function CredibilitySection() {
                   <Quote className="h-10 w-10 text-primary/20 mb-4" />
                   
                   {/* Testimonial */}
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="word"
-                    delay={0.1}
-                    duration={0.7}
-                    startOnView
-                    once
-                    className="text-muted-foreground mb-6 leading-relaxed flex-1 min-h-[8rem]"
-                    as="p"
-                  >
+                  <p className="text-muted-foreground mb-6 leading-relaxed flex-1 min-h-[8rem]">
                     {`"${testimonial.quote}"`}
-                  </TextAnimate>
+                  </p>
                   
                   {/* Author */}
                   <div className="pt-4 border-t border-border mt-auto">
-                    <TextAnimate
-                      animation="blurInUp"
-                      by="word"
-                      delay={0.3}
-                      duration={0.5}
-                      startOnView
-                      once
-                      className="font-bold text-foreground"
-                      as="p"
-                    >
+                    <p className="font-bold text-foreground">
                       {testimonial.name}
-                    </TextAnimate>
+                    </p>
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     <p className="text-xs text-muted-foreground mt-1">{testimonial.company}</p>
                   </div>
                 </div>
               </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
