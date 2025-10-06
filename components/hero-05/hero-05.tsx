@@ -59,7 +59,7 @@ const Hero05 = () => {
             by="word"
             delay={0.3}
             duration={0.8}
-            className="mt-6 max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem] font-semibold leading-[1.2]! tracking-tighter"
+            className="mt-6 text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem] font-semibold leading-tight tracking-tight"
             as="h1"
           >
             Solusi Energi Industri yang Terbukti
@@ -94,7 +94,12 @@ const Hero05 = () => {
             </Button>
           </motion.div>
         </div>
-        <div className="w-full aspect-video lg:aspect-auto lg:w-[1000px] lg:h-screen rounded-xl lg:rounded-none overflow-hidden relative">
+        <motion.div 
+          className="w-full aspect-video lg:aspect-auto lg:w-[1000px] lg:h-screen rounded-xl lg:rounded-none overflow-hidden relative"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <Image
             src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80"
             alt="Industrial energy facility"
@@ -102,7 +107,7 @@ const Hero05 = () => {
             className="object-cover"
             priority
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

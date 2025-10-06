@@ -293,6 +293,351 @@ All semantic tokens automatically support dark mode:
 
 ---
 
+---
+
+## 10. Animation Patterns (MANDATORY)
+
+### Text Animations:
+**ALWAYS use TextAnimate component for text with BlurInUp animation.**
+
+```tsx
+import { TextAnimate } from "@/components/ui/text-animate"
+
+// ✅ CORRECT: Heading with animation
+<TextAnimate
+  animation="blurInUp"
+  by="word"
+  delay={0.1}
+  duration={0.6}
+  startOnView
+  once
+  as="h2"
+>
+  Section Title
+</TextAnimate>
+
+// ✅ CORRECT: Paragraph with animation
+<TextAnimate
+  animation="blurInUp"
+  by="word"
+  delay={0.3}
+  duration={0.8}
+  startOnView
+  once
+  className="mt-4 max-w-3xl mx-auto"
+  as="p"
+>
+  Description text here
+</TextAnimate>
+```
+
+### Non-Text Animations (SlideUp):
+**Use motion.div from framer-motion for components, cards, images, badges, buttons.**
+
+```tsx
+import { motion } from "motion/react"
+
+// ✅ CORRECT: Badge animation
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5 }}
+>
+  <Badge variant="outline">Section Label</Badge>
+</motion.div>
+
+// ✅ CORRECT: Card animation with stagger
+{features.map((feature, index) => (
+  <motion.div
+    key={feature.title}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+  >
+    <Card>...</Card>
+  </motion.div>
+))}
+
+// ✅ CORRECT: Image animation
+<motion.div 
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+  <Image src="..." alt="..." fill />
+</motion.div>
+```
+
+### Animation Timing Guidelines:
+- **Text delays**: Start at 0.1s, increment by 0.2s (0.1, 0.3, 0.5, 0.7)
+- **Card stagger**: Use `index * 0.1` or `index * 0.15`
+- **Duration**: 0.5-0.8s for smooth animations
+- **Always use**: `viewport={{ once: true }}` for performance
+- **Always use**: `startOnView` for scroll-triggered animations
+
+---
+
+## 11. Layout Structure (MANDATORY)
+
+### Section Pattern:
+**Every major section MUST follow this structure:**
+
+```tsx
+import { Section } from "@/components/layout/section"
+import { Container } from "@/components/layout/container"
+
+<Section id="section-name" className="relative overflow-hidden">
+  {/* Background Gradients */}
+  <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background -z-10" />
+  <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
+  
+  <Container>
+    {/* Section Header */}
+    <div className="text-center mb-12">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <Badge variant="outline" className="mb-4">Section Label</Badge>
+      </motion.div>
+      <TextAnimate animation="blurInUp" by="word" delay={0.1} duration={0.6} startOnView once as="h2">
+        Section Title
+      </TextAnimate>
+      <TextAnimate animation="blurInUp" by="word" delay={0.3} duration={0.8} startOnView once className="mt-4 max-w-3xl mx-auto" as="p">
+        Section description
+      </TextAnimate>
+    </div>
+    
+    {/* Section Content */}
+    <div className="mt-10 w-full mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+      {/* Content here */}
+    </div>
+  </Container>
+</Section>
+```
+
+### Page Structure:
+```tsx
+export default function Page() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">
+        <HeroSection />
+        <Section1 />
+        <Section2 />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  )
+}
+```
+
+---
+
+## 12. Image Handling (MANDATORY)
+
+**ALWAYS use Next.js Image component for images.**
+
+```tsx
+import Image from "next/image"
+
+// ✅ CORRECT: Fill container
+<div className="relative h-40 rounded-xl overflow-hidden">
+  <Image
+    src="https://images.unsplash.com/..."
+    alt="Descriptive alt text"
+    fill
+    className="object-cover"
+  />
+</div>
+
+// ✅ CORRECT: Fixed dimensions
+<Image
+  src="/logo.png"
+  alt="Company logo"
+  width={120}
+  height={40}
+  priority // For hero/above-fold images
+/>
+
+// ✅ CORRECT: Responsive hero image
+<motion.div 
+  className="w-full aspect-video lg:aspect-auto lg:h-screen rounded-xl overflow-hidden relative"
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+  <Image src="..." alt="..." fill className="object-cover" priority />
+</motion.div>
+```
+
+### Image Requirements:
+- Always include descriptive `alt` text
+- Use `fill` for responsive images in containers
+- Use `priority` for above-the-fold images
+- Use `className="object-cover"` for proper scaling
+- Wrap in `relative` container when using `fill`
+
+---
+
+## 13. Responsive Design Patterns
+
+### Grid Layouts:
+```tsx
+// ✅ CORRECT: Responsive grid
+<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+  {items.map(...)}
+</div>
+
+// ✅ CORRECT: Two-column layout
+<div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+  <div>Left Content</div>
+  <div>Right Content</div>
+</div>
+```
+
+### Text Sizing:
+```tsx
+// ✅ CORRECT: Responsive text (handled by globals.css)
+<h1>Auto-responsive heading</h1>
+
+// When manual sizing needed:
+<p className="text-base lg:text-lg">Responsive paragraph</p>
+```
+
+### Spacing:
+```tsx
+// ✅ CORRECT: Responsive spacing
+py-16 lg:py-24      // Section padding
+px-4 lg:px-8        // Horizontal padding
+gap-6 lg:gap-8      // Grid gaps
+space-y-4 lg:space-y-6 // Vertical spacing
+```
+
+---
+
+## 14. Card Symmetry (MANDATORY)
+
+**All cards in a grid MUST have equal height.**
+
+```tsx
+// ✅ CORRECT: Symmetric cards
+<motion.div
+  className="h-full" // Parent takes full grid height
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: index * 0.1 }}
+>
+  <Card className="flex flex-col h-full">
+    <CardHeader className="flex-1">
+      {/* Icon and title */}
+      <TextAnimate className="min-h-[4.5rem]" as="p">
+        {description}
+      </TextAnimate>
+    </CardHeader>
+    <CardContent className="mt-auto">
+      {/* Bottom content */}
+    </CardContent>
+  </Card>
+</motion.div>
+```
+
+### Symmetry Rules:
+1. Add `h-full` to both motion.div wrapper and Card
+2. Use `flex flex-col` on Card
+3. Add `flex-1` to CardHeader for flexible content area
+4. Use `min-h-[...]` on text to ensure minimum height
+5. Add `mt-auto` to bottom sections to push them down
+
+---
+
+## 15. Language & Content Standards
+
+**All content MUST be in Bahasa Indonesia (Indonesian language).**
+
+### Form Labels (Indonesian):
+```tsx
+// ✅ CORRECT
+<label>Nama Lengkap *</label>
+<label>Email Kerja *</label>
+<label>Perusahaan *</label>
+<label>Nomor Telepon</label>
+<label>Pesan *</label>
+
+// CTA Buttons
+<Button>Hubungi Sales</Button>
+<Button>Unduh Company Profile</Button>
+<Button>Kirim Permintaan</Button>
+```
+
+### Section Headers (Indonesian):
+```tsx
+<h2>Solusi One-Stop untuk Industri Anda</h2>
+<h2>Dipercaya oleh 500+ Perusahaan</h2>
+<h2>Siap Membawa Proyek Anda ke Tahap Berikutnya?</h2>
+```
+
+---
+
+## 16. Component Organization
+
+### File Structure:
+```
+components/
+├── ui/              # shadcn components
+├── layout/          # Layout components
+│   ├── header.tsx
+│   ├── footer.tsx
+│   ├── container.tsx
+│   └── section.tsx
+├── sections/        # Page sections
+│   ├── divisions-section.tsx
+│   ├── credibility-section.tsx
+│   └── ...
+└── [feature]/       # Feature-specific
+    └── [feature].tsx
+```
+
+### Component Pattern:
+```tsx
+"use client"  // Only if using hooks/client features
+
+import { /* dependencies */ }
+
+// Component
+export function ComponentName() {
+  return (
+    <Section id="component-id">
+      {/* Component content */}
+    </Section>
+  )
+}
+
+// Or default export for pages
+export default ComponentName
+```
+
+---
+
 ## Summary
-✅ **DO**: Use semantic tokens, semantic HTML, shadcn components  
-❌ **DON'T**: Use hardcoded colors, custom button styles, manual typography classes
+✅ **DO**: 
+- Use semantic tokens for colors
+- Use semantic HTML for typography
+- Use TextAnimate with BlurInUp for text
+- Use motion.div with slideUp for components
+- Follow Section + Container pattern
+- Use Next.js Image component
+- Ensure card symmetry with h-full and flex
+- Write all content in Indonesian
+- Use shadcn/ui components
+
+❌ **DON'T**: 
+- Use hardcoded colors
+- Use custom button styles
+- Mix animation types (text gets BlurInUp, components get slideUp)
+- Forget viewport={{ once: true }} for performance
+- Use raw img tags (use Next.js Image)
+- Create asymmetric cards in grids
+- Use English for user-facing content

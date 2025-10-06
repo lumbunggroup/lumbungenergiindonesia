@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { TextAnimate } from "@/components/ui/text-animate"
+import { motion } from "motion/react"
 
 const divisions = [
   {
@@ -45,15 +47,39 @@ export function DivisionsSection() {
       
       <Container>
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">
-            🏢 Divisi Kami
-          </Badge>
-          <h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Badge variant="outline" className="mb-4">
+              🏢 Divisi Kami
+            </Badge>
+          </motion.div>
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            delay={0.1}
+            duration={0.6}
+            startOnView
+            once
+            as="h2"
+          >
             Perkuat Strategi Bisnis Anda
-          </h2>
-          <p className="mt-4 max-w-3xl mx-auto">
+          </TextAnimate>
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            delay={0.3}
+            duration={0.8}
+            startOnView
+            once
+            className="mt-4 max-w-3xl mx-auto"
+            as="p"
+          >
             Tingkatkan strategi Anda dengan solusi terintegrasi yang dirancang untuk kesuksesan industri.
-          </p>
+          </TextAnimate>
         </div>
 
         <div className="mt-8 md:mt-16 w-full mx-auto space-y-20">
@@ -62,23 +88,64 @@ export function DivisionsSection() {
               key={division.category}
               className="flex flex-col md:flex-row items-center gap-x-12 gap-y-6 md:even:flex-row-reverse"
             >
-              <div className="w-full aspect-[4/3] rounded-xl border border-border/50 basis-1/2 overflow-hidden relative">
+              <motion.div 
+                className="w-full aspect-[4/3] rounded-xl border border-border/50 basis-1/2 overflow-hidden relative"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 <Image
                   src={division.image}
                   alt={division.title}
                   fill
                   className="object-cover"
                 />
-              </div>
+              </motion.div>
               <div className="basis-1/2 shrink-0">
-                <span className="uppercase font-medium text-sm text-muted-foreground">
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  delay={0.1}
+                  duration={0.4}
+                  startOnView
+                  once
+                  className="uppercase font-medium text-sm text-muted-foreground"
+                  as="span"
+                >
                   {division.category}
-                </span>
-                <h3 className="my-3">
+                </TextAnimate>
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  delay={0.3}
+                  duration={0.6}
+                  startOnView
+                  once
+                  className="my-3"
+                  as="h3"
+                >
                   {division.title}
-                </h3>
-                <p className="text-base">{division.details}</p>
-                <Button asChild size="lg" className="mt-6">
+                </TextAnimate>
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  delay={0.5}
+                  duration={0.8}
+                  startOnView
+                  once
+                  className="text-base"
+                  as="p"
+                >
+                  {division.details}
+                </TextAnimate>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                >
+                  <Button asChild size="lg" className="mt-6">
                   <Link 
                     href={division.ctaLink}
                     onClick={(e) => {
@@ -92,6 +159,7 @@ export function DivisionsSection() {
                     Pelajari Lebih Lanjut <ArrowRight />
                   </Link>
                 </Button>
+                </motion.div>
               </div>
             </div>
           ))}

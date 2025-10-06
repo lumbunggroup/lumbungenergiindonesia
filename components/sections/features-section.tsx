@@ -4,41 +4,53 @@ import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Box, Wrench, Zap } from "lucide-react"
+import { Flame, Sun, Truck, Cog, Shield, Headphones } from "lucide-react"
+import { TextAnimate } from "@/components/ui/text-animate"
+import { motion } from "motion/react"
+import Image from "next/image"
 
 const features = [
   {
-    icon: Box,
-    title: "Pengadaan Energi & Material",
+    icon: Flame,
+    title: "Perdagangan Energi (Batubara & Biomassa)",
     description:
-      "Supply batubara, biomassa, solar panel, dan peralatan industri dengan dokumentasi lengkap dan jaminan kualitas.",
-    highlights: [
-      "Sertifikasi Produk",
-      "On-Time Delivery",
-      "Quality Assurance",
-    ],
+      "Kami menyediakan pasokan energi batubara dan biomassa (cangkang sawit) berkualitas tinggi dengan jaminan legalitas dan rantai pasok yang andal.",
+    image: "https://images.unsplash.com/photo-1611270629569-8b357cb88da8?w=600&q=80",
   },
   {
-    icon: Wrench,
-    title: "Instalasi & Engineering",
+    icon: Sun,
+    title: "Solusi Energi Terbarukan (PLTS)",
     description:
-      "Engineering design, instalasi sistem energi, piping, dan commissioning oleh tim bersertifikat dengan standar internasional.",
-    highlights: [
-      "HSE Compliance",
-      "Technical Support",
-      "Project Management",
-    ],
+      "Wujudkan transisi energi bersih Anda melalui solusi Pembangkit Listrik Tenaga Surya (PLTS) yang kami desain dan instal untuk skala industri maupun komersial.",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80",
   },
   {
-    icon: Zap,
-    title: "Sistem Energi Terbarukan",
+    icon: Truck,
+    title: "Logistik Multi-Komoditas",
     description:
-      "Solusi PLTS (Solar PV) dan sistem energi terbarukan lainnya untuk efisiensi dan keberlanjutan operasional industri.",
-    highlights: [
-      "ROI Analysis",
-      "Installation & Monitoring",
-      "Maintenance",
-    ],
+      "Jasa angkutan terintegrasi untuk berbagai jenis komoditas, mulai dari batubara, mineral, pangan, hingga material konstruksi, didukung armada modern dan izin resmi.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
+  },
+  {
+    icon: Cog,
+    title: "Jasa Mechanical Engineering",
+    description:
+      "Solusi teknik lengkap mulai dari fabrikasi mesin, instalasi sistem perpipaan, hingga proyek konstruksi sipil untuk meningkatkan efisiensi fasilitas industri Anda.",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80",
+  },
+  {
+    icon: Shield,
+    title: "Solusi Infrastruktur & Keamanan IT",
+    description:
+      "Modernisasi operasional bisnis Anda dengan layanan pengadaan perangkat keras, pengembangan jaringan, serta instalasi sistem keamanan terintegrasi.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+  },
+  {
+    icon: Headphones,
+    title: "Managed Services & Dukungan Teknis",
+    description:
+      "Pastikan operasional Anda berjalan lancar dengan layanan dukungan teknis dan pengelolaan sistem IT (SOC, server management) dan ME secara berkelanjutan.",
+    image: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=600&q=80",
   },
 ]
 
@@ -52,46 +64,91 @@ export function FeaturesSection() {
       
       <Container>
         <div className="text-center mb-12">
-          <Badge variant="outline" className="mb-4">
-            ⚡ Layanan Terintegrasi
-          </Badge>
-          <h2>
-            Solusi <span className="text-primary">One-Stop</span> untuk Industri Anda
-          </h2>
-          <p className="mt-4 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Badge variant="outline" className="mb-4">
+              ⚡ Layanan Terintegrasi
+            </Badge>
+          </motion.div>
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            delay={0.1}
+            duration={0.6}
+            startOnView
+            once
+            as="h2"
+          >
+            Solusi One-Stop untuk Industri Anda
+          </TextAnimate>
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            delay={0.3}
+            duration={0.8}
+            startOnView
+            once
+            className="mt-4 max-w-3xl mx-auto"
+            as="p"
+          >
             Dari pengadaan hingga maintenance, kami menyediakan layanan komprehensif yang disesuaikan dengan kebutuhan spesifik proyek Anda.
-          </p>
+          </TextAnimate>
         </div>
 
         <div className="mt-10 w-full mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-          {features.map((feature) => (
-            <Card
+          {features.map((feature, index) => (
+            <motion.div
               key={feature.title}
-              className="flex flex-col border rounded-xl overflow-hidden shadow-none pb-0 hover:shadow-lg hover:shadow-primary/5 transition-all hover:-translate-y-1"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
+              <Card className="flex flex-col border rounded-xl overflow-hidden shadow-none pb-0 hover:shadow-lg hover:shadow-primary/5 transition-all hover:-translate-y-1">
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h4>
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  delay={0.1}
+                  duration={0.5}
+                  startOnView
+                  once
+                  as="h4"
+                >
                   {feature.title}
-                </h4>
-                <p className="mt-2 text-base">
+                </TextAnimate>
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  delay={0.3}
+                  duration={0.7}
+                  startOnView
+                  once
+                  className="mt-2 text-base"
+                  as="p"
+                >
                   {feature.description}
-                </p>
-                <ul className="mt-4 space-y-2">
-                  {feature.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
+                </TextAnimate>
               </CardHeader>
               <CardContent className="mt-auto px-0 pb-0">
-                <div className="bg-gradient-to-br from-primary/5 to-accent/5 h-32 ml-6 rounded-tl-xl" />
+                <div className="relative h-32 ml-6 rounded-tl-xl overflow-hidden">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </CardContent>
             </Card>
+            </motion.div>
           ))}
         </div>
       </Container>
