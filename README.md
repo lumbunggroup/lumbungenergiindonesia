@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lumbung Energi Indonesia - Landing Page
 
-## Getting Started
+Corporate B2B landing page untuk PT Lumbung Energi Indonesia. Website ini dirancang untuk menampilkan proposisi nilai perusahaan, kredibilitas, dan mendorong konversi melalui dua CTA utama: **Hubungi Sales** dan **Unduh Company Profile**.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework:** Next.js 15 with App Router
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **UI Components:** shadcn/ui
+- **Database:** Supabase (PostgreSQL)
+- **Forms:** React Hook Form + Zod validation
+- **Email:** Resend (optional)
+- **Analytics:** Vercel Analytics
+- **Deployment:** Vercel
+
+## Features
+
+✅ **Hero Section** dengan dual CTA (Hubungi Sales + Unduh Profile)  
+✅ **Services Section** - 4 layanan utama dengan icon dan deskripsi  
+✅ **Why LEI Section** - 5 keunggulan perusahaan  
+✅ **Credibility Section** - Client logos, sertifikasi, testimonials  
+✅ **CTA Repeat Section** - Mendorong konversi dengan trust signals  
+✅ **Contact Form** - Validated form dengan rate limiting  
+✅ **WhatsApp Integration** - Quick contact via WhatsApp  
+✅ **PDF Download** - Company profile download dengan tracking  
+✅ **Email Notifications** - Auto-reply & sales notification (via Resend)  
+✅ **Mobile Responsive** - Optimal untuk semua device sizes  
+✅ **SEO Optimized** - Metadata, OG tags, robots.txt, sitemap  
+✅ **Security Headers** - X-Frame-Options, CSP, dll  
+
+## Quick Start
+
+### 1. Clone & Install
+
+```bash
+cd lei-website
+npm install
+```
+
+### 2. Environment Setup
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in your Supabase credentials and other variables. See [SETUP.md](./SETUP.md) for detailed guide.
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+lei-website/
+├── app/
+│   ├── api/
+│   │   ├── contact/          # Contact form API
+│   │   └── download/         # PDF download API
+│   ├── layout.tsx            # Root layout
+│   ├── page.tsx              # Home page
+│   └── globals.css           # Global styles
+├── components/
+│   ├── layout/               # Layout components (Header, Footer, etc)
+│   ├── sections/             # Page sections (Hero, Services, etc)
+│   └── ui/                   # shadcn/ui components
+├── lib/
+│   ├── supabase.ts           # Supabase client
+│   ├── validations/          # Zod schemas
+│   └── email/                # Email templates
+└── public/
+    └── documents/            # PDF files (company profile)
+```
 
-## Learn More
+## Database Schema
 
-To learn more about Next.js, take a look at the following resources:
+Tables:
+- **leads** - Contact form submissions
+- **clients** - Client logos for credibility section
+- **testimonials** - Customer testimonials
+- **services** - Service listings
+- **downloads** - PDF download tracking
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See database migrations in Supabase project.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Deploy to Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Install Vercel CLI
+npm i -g vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Deploy
+vercel
+```
+
+Or connect your Git repository to Vercel dashboard.
+
+**Important:** Don't forget to add all environment variables in Vercel dashboard!
+
+## Content Management (Future V1)
+
+For MVP, content is hardcoded. For V1, implement:
+- Simple CMS dashboard untuk manage clients, testimonials, services
+- Supabase Auth untuk admin access
+- CRUD operations untuk dynamic content
+
+## Contributing
+
+See [SETUP.md](./SETUP.md) for development setup guide.
+
+## License
+
+Proprietary - PT Lumbung Energi Indonesia
