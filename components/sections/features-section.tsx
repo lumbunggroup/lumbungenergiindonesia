@@ -33,14 +33,14 @@ const features = [
   },
   {
     icon: Cog,
-    title: "Jasa Mechanical Engineering",
+    title: "Jasa Mekanikal & Elektrikal (ME)",
     description:
       "Solusi teknik lengkap mulai dari fabrikasi mesin, instalasi sistem perpipaan, hingga proyek konstruksi sipil untuk meningkatkan efisiensi fasilitas industri Anda.",
     image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80",
   },
   {
     icon: Shield,
-    title: "Solusi Infrastruktur & Keamanan IT",
+    title: "Solusi Infrastruktur & Keamanan Teknologi Informasi (TI)",
     description:
       "Modernisasi operasional bisnis Anda dengan layanan pengadaan perangkat keras, pengembangan jaringan, serta instalasi sistem keamanan terintegrasi.",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
@@ -49,7 +49,7 @@ const features = [
     icon: Headphones,
     title: "Managed Services & Dukungan Teknis",
     description:
-      "Pastikan operasional Anda berjalan lancar dengan layanan dukungan teknis dan pengelolaan sistem IT (SOC, server management) dan ME secara berkelanjutan.",
+      "Pastikan operasional Anda berjalan lancar dengan layanan dukungan teknis dan pengelolaan sistem ME (Mekanikal & Elektrikal) dan TI (Teknologi Informasi) seperti SOC dan server management secara berkelanjutan.",
     image: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=600&q=80",
   },
 ]

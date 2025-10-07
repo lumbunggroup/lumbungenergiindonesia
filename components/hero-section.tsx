@@ -12,11 +12,11 @@ export default function HeroSection() {
             <HeroHeader />
             <main className="overflow-x-hidden">
                 <section>
-                    <div className="py-24 md:pb-32 lg:pb-36 lg:pt-72">
+                    <div className="py-24 md:pb-32 lg:pb-36 lg:pt-64">
                         <div className="relative mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
                             <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
                                 <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-16 xl:text-7xl text-white">Selalu Bersinergi untuk Bisnis Anda</h1>
-                                <p className="mt-8 max-w-2xl text-balance text-lg text-white">Pengadaan energi (batubara/biomassa), PLTS, ME & IT, dan logistik dalam satu mitra. Fokus pada keselamatan kerja, kepatuhan, dan ketepatan eksekusi.</p>
+                                <p className="mt-8 max-w-2xl text-balance text-lg text-white">Pengadaan energi (batubara/biomassa), PLTS (Pembangkit Listrik Tenaga Surya), ME (Mekanikal & Elektrikal), TI (Teknologi Informasi), dan logistik dalam satu mitra. Fokus pada keselamatan kerja, kepatuhan, dan ketepatan eksekusi.</p>
 
                                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                                     <Button
@@ -47,6 +47,7 @@ export default function HeroSection() {
                                 loop
                                 className="size-full object-cover opacity-100 dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
                                 src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/coal_mining_video.mp4"></video>
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#002D6D]/70 rounded-3xl lg:rounded-[3rem] pointer-events-none"></div>
                         </div>
                     </div>
                 </section>

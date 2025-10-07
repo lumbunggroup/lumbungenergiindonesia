@@ -18,12 +18,20 @@ const divisions = [
     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
   },
   {
-    category: "Divisi ME & IT Support",
+    category: "Divisi Mekanikal & Elektrikal (ME)",
     title: "Engineering Design & Technical Excellence",
     details:
-      "Layanan engineering design, instalasi ME & piping, commissioning, serta IT support berkelanjutan dengan perhatian pada HSE dan standar implementasi di lapangan.",
+      "Layanan engineering design, instalasi sistem ME & piping, fabrikasi mesin, commissioning, dan proyek konstruksi sipil dengan standar HSE dan implementasi di lapangan.",
     ctaLink: "#kontak",
     image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+  },
+  {
+    category: "Divisi Teknologi Informasi (TI)",
+    title: "Solusi IT & Digital Infrastructure",
+    details:
+      "Layanan pengadaan perangkat keras, pengembangan jaringan, instalasi sistem keamanan, SOC, server management, dan IT support berkelanjutan untuk operasional bisnis modern.",
+    ctaLink: "#kontak",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
   },
   {
     category: "Divisi Logistik",
@@ -49,7 +57,7 @@ export function DivisionsSection() {
             Perkuat Strategi Bisnis Anda
           </h2>
           <p className="mt-4 max-w-3xl mx-auto">
-            LEI menyediakan rantai layanan end-to-end: pasokan energi (batubara & biomassa), desain/instalasi PLTS skala industri, ME & IT support, serta logistik multi-komoditas.
+            LEI menyediakan rantai layanan end-to-end: pasokan energi (batubara & biomassa), desain/instalasi PLTS (Pembangkit Listrik Tenaga Surya), ME (Mekanikal & Elektrikal), TI (Teknologi Informasi), serta logistik multi-komoditas.
           </p>
         </div>
 

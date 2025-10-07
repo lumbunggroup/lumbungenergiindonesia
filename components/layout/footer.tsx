@@ -64,25 +64,25 @@ export function Footer() {
                 <div className="flex items-start gap-3">
                   <Mail className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
                   <a 
-                    href="mailto:sales@lumbungenergi.id" 
+                    href="mailto:admin.lei@lumbunggroup.co.id" 
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    sales@lumbungenergi.id
+                    admin.lei@lumbunggroup.co.id
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
                   <a 
-                    href="tel:+62XXXXXXXXXX" 
+                    href="tel:+628112005777" 
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +62-XXX-XXXX-XXXX
+                    +62 811-2005-7777
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
                   <span className="text-sm text-muted-foreground">
-                    Jakarta, Indonesia
+                    Ruko Pariwarna Niaga Kulon No. 7, Kota Baru Parahyangan, Padalarang, Bandung Barat 40553
                   </span>
                 </div>
               </div>

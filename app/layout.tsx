@@ -11,19 +11,19 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Lumbung Energi Indonesia — Solusi Energi Industri yang Terbukti",
+  title: "Lumbung Energi Indonesia — Selalu Bersinergi untuk Bisnis Anda",
   description: "Lumbung Energi Indonesia membantu proyek Anda berjalan aman, tepat waktu, dan sesuai regulasi. Hubungi sales atau unduh Company Profile kami.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   keywords: ["energi industri", "solusi energi", "pengadaan", "instalasi", "commissioning", "perawatan", "konsultasi teknis"],
   openGraph: {
-    title: "Solusi Energi Industri yang Terbukti",
+    title: "Selalu Bersinergi untuk Bisnis Anda",
     description: "Aman • Tepat Waktu • Sesuai Regulasi. Kenali kami dan unduh Company Profile.",
     type: "website",
     locale: "id_ID",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solusi Energi Industri yang Terbukti",
+    title: "Selalu Bersinergi untuk Bisnis Anda",
     description: "Aman • Tepat Waktu • Sesuai Regulasi. Kenali kami dan unduh Company Profile.",
   },
 };
