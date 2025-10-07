@@ -22,10 +22,10 @@ export default function HeroSection() {
                                     <Button
                                         asChild
                                         size="lg"
-                                        className="h-12 rounded-full pl-5 pr-3 text-base">
+                                        className="h-12 rounded-full bg-white pl-5 pr-3 text-base">
                                         <Link href="#link">
-                                            <span className="text-nowrap">Contact Us</span>
-                                            <ChevronRight className="ml-1" />
+                                            <span className="text-nowrap text-primary">Contact Us</span>
+                                            <ChevronRight className="ml-1 bg-primary" />
                                         </Link>
                                     </Button>
                                     {/* <Button
