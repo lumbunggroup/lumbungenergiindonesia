@@ -9,10 +9,10 @@ import { cn } from '@/lib/utils'
 import { Download } from 'lucide-react'
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'About', href: '#link' },
+    { name: 'Division', href: '#divisi' },
+    { name: 'Services', href: '#layanan' },
+    { name: 'Testimonial', href: '#testimoni' },
+    { name: 'Contact', href: '#kontak' },
 ]
 
 export const HeroHeader = () => {
