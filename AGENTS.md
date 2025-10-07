@@ -962,6 +962,289 @@ When creating new pages:
 
 ---
 
+## 19. Supabase Integration (MANDATORY)
+
+**All form submissions and data tracking MUST use Supabase with proper environment variables and RLS policies.**
+
+### Environment Variables Setup:
+
+**CRITICAL:** Always use `NEXT_PUBLIC_` prefix for client-side accessible variables.
+
+```tsx
+// ✅ CORRECT: In API routes and server components
+process.env.NEXT_PUBLIC_SUPABASE_URL
+process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+// ✅ CORRECT: For admin operations (server-side only)
+process.env.SUPABASE_SERVICE_ROLE_KEY
+
+// ❌ WRONG: Missing NEXT_PUBLIC_ prefix
+process.env.NEXT_SUPABASE_URL        // ❌ Won't work!
+process.env.NEXT_SUPABASE_ANON_KEY   // ❌ Won't work!
+```
+
+### Supabase Client Initialization:
+
+```tsx
+// lib/supabase.ts - Use this as reference
+import { createClient } from '@supabase/supabase-js'
+
+// Client for public operations (anon key)
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+// Admin client for backend operations (service role key)
+export const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  }
+)
+```
+
+### API Route Pattern for Form Submissions:
+
+```tsx
+// app/api/contact/route.ts (example)
+import { NextRequest, NextResponse } from "next/server"
+import { createClient } from "@supabase/supabase-js"
+
+export async function POST(request: NextRequest) {
+  try {
+    // Parse and validate data
+    const body = await request.json()
+    
+    // ✅ CORRECT: Create Supabase client with proper env vars
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      )
+      
+      const { error } = await supabase.from("table_name").insert({
+        // data fields
+      })
+
+      if (error) {
+        console.error("Supabase error:", error)
+        // Handle error appropriately
+      }
+    }
+
+    return NextResponse.json({ message: "Success" }, { status: 200 })
+  } catch (error) {
+    console.error("API error:", error)
+    return NextResponse.json({ message: "Error" }, { status: 500 })
+  }
+}
+```
+
+### RLS (Row Level Security) Policies:
+
+**ALWAYS enable RLS and create appropriate policies for public-facing tables.**
+
+#### For Contact Forms / Lead Submissions:
+
+```sql
+-- Enable RLS on leads table
+ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
+
+-- Allow anonymous users to INSERT (for contact forms)
+CREATE POLICY "Allow anonymous INSERT on leads"
+ON public.leads
+FOR INSERT
+TO anon
+WITH CHECK (true);
+
+-- Allow service role full access (for admin operations)
+CREATE POLICY "Allow service role full access on leads"
+ON public.leads
+FOR ALL
+TO service_role
+USING (true)
+WITH CHECK (true);
+```
+
+#### For Read-Only Public Data:
+
+```sql
+-- Example: Allow anyone to read services
+CREATE POLICY "Allow public read on services"
+ON public.services
+FOR SELECT
+TO anon, authenticated
+USING (true);
+```
+
+### Form Integration with React Hook Form:
+
+```tsx
+"use client"
+
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
+
+export function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(validationSchema),
+    defaultValues: { /* ... */ }
+  })
+
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true)
+
+    try {
+      // ✅ CORRECT: Call API route that handles Supabase
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        toast.success("Terima kasih! Tim kami akan menghubungi Anda segera.")
+        form.reset()
+      } else {
+        const errorData = await response.json()
+        toast.error(errorData.message || "Maaf, terjadi kendala.")
+      }
+    } catch {
+      toast.error("Maaf, terjadi kendala. Silakan coba lagi.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        {/* Form fields */}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Mengirim..." : "Kirim Permintaan"}
+        </Button>
+      </form>
+    </Form>
+  )
+}
+```
+
+### Database Tables Best Practices:
+
+#### Required Fields for Lead Tracking:
+
+```sql
+CREATE TABLE public.leads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  company TEXT NOT NULL,
+  phone TEXT,
+  topic TEXT,
+  message TEXT NOT NULL,
+  utm_source TEXT,
+  utm_medium TEXT,
+  utm_campaign TEXT,
+  status TEXT DEFAULT 'new' CHECK (status IN ('new', 'contacted', 'qualified', 'closed')),
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+### Common Pitfalls & Solutions:
+
+#### ❌ WRONG: Direct client-side Supabase calls without API route
+```tsx
+// DON'T do this in client components
+const { data, error } = await supabase.from("leads").insert(formData)
+```
+
+#### ✅ CORRECT: Use API routes for form submissions
+```tsx
+// DO this - call API route
+const response = await fetch("/api/contact", {
+  method: "POST",
+  body: JSON.stringify(formData)
+})
+```
+
+#### ❌ WRONG: Missing environment variable check
+```tsx
+// This will fail in build if vars are not set
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+```
+
+#### ✅ CORRECT: Check environment variables exist
+```tsx
+// This gracefully handles missing vars
+if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  )
+  // Use supabase client
+}
+```
+
+### Testing Supabase Integration:
+
+1. **Check Environment Variables:**
+   ```bash
+   # Verify .env.local has correct variables
+   NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxx...
+   ```
+
+2. **Test Form Submission:**
+   - Fill out form in browser
+   - Check browser console for errors
+   - Verify data appears in Supabase table
+   - Check for toast notification
+
+3. **Check RLS Policies:**
+   - Use Supabase MCP to verify policies exist
+   - Test insert operations work from client
+   - Verify unauthorized access is blocked
+
+4. **Monitor Logs:**
+   ```tsx
+   // Use Supabase MCP to check API logs
+   supabase___get_logs({ service: "api" })
+   ```
+
+### Integration Checklist:
+
+When adding Supabase integration:
+- [ ] Use correct environment variable names (NEXT_PUBLIC_ prefix)
+- [ ] Create API route for data operations
+- [ ] Enable RLS on tables
+- [ ] Create appropriate RLS policies (INSERT for anon, ALL for service_role)
+- [ ] Use react-hook-form with zod validation
+- [ ] Add loading states and error handling
+- [ ] Show toast notifications for success/error
+- [ ] Test submission end-to-end
+- [ ] Verify data appears in Supabase dashboard
+- [ ] Check for security advisors warnings
+
+### Reference Files:
+
+- `lib/supabase.ts` - Supabase client initialization
+- `app/api/contact/route.ts` - Contact form API example
+- `lib/validations/contact.ts` - Form validation schema
+- `docs/contact-form-integration.md` - Detailed integration docs
+
+---
+
 ## Summary
 ✅ **DO**: 
 - Use semantic tokens for colors
@@ -976,6 +1259,10 @@ When creating new pages:
 - Use external CDN for assets > 100KB
 - Store brand assets on Vercel Blob Storage
 - Create asset constants file for organization
+- Use correct Supabase environment variables (NEXT_PUBLIC_ prefix)
+- Create RLS policies for all public-facing tables
+- Use API routes for Supabase operations
+- Test form submissions end-to-end
 
 ❌ **DON'T**: 
 - Use hardcoded colors
@@ -988,3 +1275,6 @@ When creating new pages:
 - Store large assets (> 100KB) in repository
 - Commit binary files without CDN alternative
 - Use vague or generic copywriting
+- Use incorrect environment variable names (missing NEXT_PUBLIC_)
+- Make direct Supabase calls from client without RLS policies
+- Skip error handling in API routes

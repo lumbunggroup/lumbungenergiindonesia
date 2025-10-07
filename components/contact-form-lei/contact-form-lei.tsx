@@ -1,32 +1,57 @@
 "use client"
 
 import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { toast } from "sonner"
 import { MessageSquare, Phone, Mail } from "lucide-react"
 import Link from "next/link"
+import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact"
 
 export function ContactFormLEI() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    company: "",
-    phone: "",
-    topic: "",
-    message: "",
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      topic: "",
+      message: "",
+      consent: false,
+    },
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-  }
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true)
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        toast.success("Terima kasih! Tim kami akan menghubungi Anda segera.")
+        form.reset()
+      } else {
+        const errorData = await response.json()
+        toast.error(errorData.message || "Maaf, terjadi kendala. Silakan coba lagi atau hubungi via WhatsApp.")
+      }
+    } catch {
+      toast.error("Maaf, terjadi kendala. Silakan coba lagi atau hubungi via WhatsApp.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -58,9 +83,8 @@ export function ContactFormLEI() {
                     Kunjungi Kantor Kami
                   </h4>
                   <p className="text-base">
-                    PT Lumbung Energi Indonesia
+                    Ruko Pariwarna Niaga Kulon No. 7, Kota Baru Parahyangan, Padalarang, Bandung Barat 40553
                   </p>
-                  <p className="text-base">Jakarta, Indonesia</p>
                 </div>
               </div>
 
@@ -75,8 +99,7 @@ export function ContactFormLEI() {
                   <h4 className="mb-2">
                     Hubungi Kami Langsung
                   </h4>
-                  <p className="text-base">Telepon: +62-XXX-XXXX-XXXX</p>
-                  <p className="text-base">Fax: +62-XXX-XXXX-XXXX</p>
+                  <p className="text-base">+62 811-2005-7777</p>
                 </div>
               </div>
 
@@ -91,8 +114,7 @@ export function ContactFormLEI() {
                   <h4 className="mb-2">
                     Email Kami
                   </h4>
-                  <p className="text-base">sales@lumbungenergi.id</p>
-                  <p className="text-base">info@lumbungenergi.id</p>
+                  <p className="text-base">admin.lei@lumbunggroup.co.id</p>
                 </div>
               </div>
             </div>
@@ -107,150 +129,177 @@ export function ContactFormLEI() {
               Isi formulir di bawah ini atau chat WhatsApp untuk respons lebih cepat.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Full Name */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="fullName"
-                  className="text-sm font-medium text-foreground block"
-                >
-                  Nama Lengkap *
-                </label>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  type="text"
-                  placeholder="Masukkan nama lengkap Anda"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  className="h-12 text-base"
-                  required
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Full Name */}
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nama Lengkap *</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Masukkan nama lengkap Anda"
+                          className="h-12 text-base"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              {/* Email */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="text-sm font-medium text-foreground block"
-                >
-                  Email Kerja *
-                </label>
-                <Input
-                  id="email"
+                {/* Email */}
+                <FormField
+                  control={form.control}
                   name="email"
-                  type="email"
-                  placeholder="nama@perusahaan.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="h-12 text-base"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email Kerja *</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="nama@perusahaan.com"
+                          className="h-12 text-base"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              {/* Company */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="company"
-                  className="text-sm font-medium text-foreground block"
-                >
-                  Perusahaan *
-                </label>
-                <Input
-                  id="company"
+                {/* Company */}
+                <FormField
+                  control={form.control}
                   name="company"
-                  type="text"
-                  placeholder="Nama perusahaan Anda"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="h-12 text-base"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Perusahaan *</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Nama perusahaan Anda"
+                          className="h-12 text-base"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              {/* Phone */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="phone"
-                  className="text-sm font-medium text-foreground block"
-                >
-                  Nomor Telepon
-                </label>
-                <Input
-                  id="phone"
+                {/* Phone */}
+                <FormField
+                  control={form.control}
                   name="phone"
-                  type="tel"
-                  placeholder="+62 xxx-xxxx-xxxx"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="h-12 text-base"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nomor Telepon</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="tel"
+                          placeholder="+62 xxx-xxxx-xxxx"
+                          className="h-12 text-base"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              {/* Topic */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="topic"
-                  className="text-sm font-medium text-foreground block"
-                >
-                  Topik
-                </label>
-                <select
-                  id="topic"
+                {/* Topic */}
+                <FormField
+                  control={form.control}
                   name="topic"
-                  value={formData.topic}
-                  onChange={handleChange}
-                  className="h-12 text-base w-full rounded-md border border-input bg-background px-3 py-2"
-                >
-                  <option value="">Pilih topik</option>
-                  <option value="pengadaan">Pengadaan</option>
-                  <option value="instalasi">Instalasi/Commissioning</option>
-                  <option value="perawatan">Perawatan</option>
-                  <option value="konsultasi">Konsultasi</option>
-                  <option value="lainnya">Lainnya</option>
-                </select>
-              </div>
-
-              {/* Message */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="text-sm font-medium text-foreground block"
-                >
-                  Pesan *
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Jelaskan kebutuhan proyek Anda"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="min-h-32 text-base resize-none"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Topik</FormLabel>
+                      <FormControl>
+                        <select
+                          {...field}
+                          className="h-12 text-base w-full rounded-md border border-input bg-background px-3 py-2"
+                        >
+                          <option value="">Pilih topik</option>
+                          <option value="pengadaan">Pengadaan</option>
+                          <option value="instalasi">Instalasi/Commissioning</option>
+                          <option value="perawatan">Perawatan</option>
+                          <option value="konsultasi">Konsultasi</option>
+                          <option value="lainnya">Lainnya</option>
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-              >
-                Kirim Permintaan
-              </Button>
+                {/* Message */}
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Pesan *</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Jelaskan kebutuhan proyek Anda"
+                          className="min-h-32 text-base resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              {/* Privacy Policy */}
-              <p className="text-sm text-muted-foreground text-center">
-                Data Anda hanya digunakan untuk menindaklanjuti permintaan ini. Lihat{" "}
-                <Link
-                  href="/kebijakan-privasi"
-                  className="text-primary underline font-medium hover:text-primary/80"
+                {/* Consent Checkbox */}
+                <FormField
+                  control={form.control}
+                  name="consent"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <input
+                          type="checkbox"
+                          checked={field.value}
+                          onChange={field.onChange}
+                          className="mt-1 h-4 w-4 rounded border-input"
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="text-sm font-normal">
+                          Saya setuju dihubungi oleh tim LEI *
+                        </FormLabel>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full"
+                  disabled={isSubmitting}
                 >
-                  kebijakan privasi
-                </Link>{" "}
-                kami.
-              </p>
-            </form>
+                  {isSubmitting ? "Mengirim..." : "Kirim Permintaan"}
+                </Button>
+
+                {/* Privacy Policy */}
+                <p className="text-sm text-muted-foreground text-center">
+                  Data Anda hanya digunakan untuk menindaklanjuti permintaan ini. Lihat{" "}
+                  <Link
+                    href="/kebijakan-privasi"
+                    className="text-primary underline font-medium hover:text-primary/80"
+                  >
+                    kebijakan privasi
+                  </Link>{" "}
+                  kami.
+                </p>
+              </form>
+            </Form>
           </div>
         </div>
       </div>

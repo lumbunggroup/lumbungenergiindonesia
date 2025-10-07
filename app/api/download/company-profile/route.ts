@@ -5,12 +5,12 @@ import { readFile } from "fs/promises"
 export async function GET(request: NextRequest) {
   try {
     // Track download (optional) - skip during build
-    if (process.env.NODE_ENV === "production" && process.env.NEXT_SUPABASE_URL) {
+    if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SUPABASE_URL) {
       try {
         const { createClient } = await import("@supabase/supabase-js")
         const supabase = createClient(
-          process.env.NEXT_SUPABASE_URL!,
-          process.env.NEXT_SUPABASE_ANON_KEY!
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
         )
         
         const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip")
