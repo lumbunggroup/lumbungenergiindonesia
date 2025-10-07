@@ -892,6 +892,76 @@ export const Logo = ({ className }: { className?: string }) => {
 
 ---
 
+## 18. Navbar/Header Component (MANDATORY)
+
+**ALWAYS use the HeroHeader component from `@/components/header` for navigation.**
+
+### ✅ CORRECT Import & Usage:
+
+```tsx
+import { HeroHeader } from "@/components/header"
+
+export default function Page() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <HeroHeader />
+      <main className="flex-1">
+        {/* Page content */}
+      </main>
+      <Footer />
+    </div>
+  )
+}
+```
+
+### ❌ WRONG Imports:
+
+```tsx
+// DON'T use these paths
+import { Header } from "@/components/layout/header"  // ❌ Wrong path
+import { Header } from "@/components/header"          // ❌ Wrong export name
+import Header from "@/components/header"              // ❌ Wrong - not default export
+```
+
+### Header Component Details:
+
+**File Location:** `components/header.tsx`  
+**Export Name:** `HeroHeader` (named export)  
+**Component Type:** Client Component (`'use client'`)
+
+**Features:**
+- Sticky navigation with scroll detection
+- Mobile responsive menu
+- Logo integration via `<Logo />` component
+- Company Profile download button
+- Navigation menu items
+- Smooth scroll behavior
+- Backdrop blur effect on scroll
+
+### Customization:
+
+If you need to modify navigation items, update the `menuItems` array in `components/header.tsx`:
+
+```tsx
+const menuItems = [
+    { name: 'Features', href: '#link' },
+    { name: 'Solution', href: '#link' },
+    { name: 'Pricing', href: '#link' },
+    { name: 'About', href: '#link' },
+]
+```
+
+### Integration Checklist:
+
+When creating new pages:
+- [ ] Import `HeroHeader` from `@/components/header`
+- [ ] Place `<HeroHeader />` at the top of page layout
+- [ ] Use correct component name `HeroHeader` (not `Header`)
+- [ ] Ensure page has proper `min-h-screen` container
+- [ ] Include `<Footer />` at the bottom
+
+---
+
 ## Summary
 ✅ **DO**: 
 - Use semantic tokens for colors
