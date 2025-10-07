@@ -85,7 +85,11 @@ export const HeroHeader = () => {
                                 <Button
                                     asChild
                                     size="sm">
-                                        <Link href="#link">
+                                        <Link 
+                                            href="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/LEI%20-%20Company%20Profile%202025.pdf"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
                                             <Download className="mr-1" />
                                             <span className="text-nowrap">Company Profile</span>
                                         </Link>
