@@ -101,7 +101,7 @@ export function ContactFormLEI() {
           {/* Right Side - Form */}
           <div className="bg-card rounded-2xl shadow-lg p-8 lg:p-10">
             <h2 className="mb-8">
-              Kirim Permintaan Anda
+              Kirim Permintaan
             </h2>
             <p className="text-muted-foreground mb-6">
               Isi formulir di bawah ini atau chat WhatsApp untuk respons lebih cepat.

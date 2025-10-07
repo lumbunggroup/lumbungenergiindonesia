@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Container } from "./container"
 import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react"
 
@@ -45,18 +46,14 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-base">L</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-lg leading-tight">
-                    Lumbung Energi
-                  </span>
-                  <span className="text-sm text-muted-foreground leading-tight">
-                    Indonesia
-                  </span>
-                </div>
+              <div className="mb-4">
+                <Image
+                  src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lei.svg"
+                  alt="Lumbung Energi Indonesia"
+                  width={160}
+                  height={48}
+                  className="h-12 w-auto"
+                />
               </div>
               <p className="text-sm text-muted-foreground mb-6 max-w-sm leading-relaxed">
                 Solusi energi industri yang terpercaya. Dari pengadaan hingga maintenance, kami siap mendukung kebutuhan energi Anda.

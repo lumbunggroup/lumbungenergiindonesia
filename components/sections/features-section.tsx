@@ -14,21 +14,21 @@ const features = [
     icon: Flame,
     title: "Perdagangan Energi (Batubara & Biomassa)",
     description:
-      "Kami menyediakan pasokan energi batubara dan biomassa (cangkang sawit) berkualitas tinggi dengan jaminan legalitas dan rantai pasok yang andal.",
+      "Rantai pasok yang terkelola dan terdokumentasi.",
     image: "https://images.unsplash.com/photo-1611270629569-8b357cb88da8?w=600&q=80",
   },
   {
     icon: Sun,
     title: "Solusi Energi Terbarukan (PLTS)",
     description:
-      "Wujudkan transisi energi bersih Anda melalui solusi Pembangkit Listrik Tenaga Surya (PLTS) yang kami desain dan instal untuk skala industri maupun komersial.",
+      "Desain & instalasi PLTS industri/komersial.",
     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80",
   },
   {
     icon: Truck,
     title: "Logistik Multi-Komoditas",
     description:
-      "Jasa angkutan terintegrasi untuk berbagai jenis komoditas, mulai dari batubara, mineral, pangan, hingga material konstruksi, didukung armada modern dan izin resmi.",
+      "Pengiriman terencana dengan koordinasi armada.",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
   },
   {
@@ -70,9 +70,6 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <Badge variant="outline" className="mb-4">
-              ⚡ Layanan Terintegrasi
-            </Badge>
           </motion.div>
           <TextAnimate
             animation="blurInUp"
@@ -83,7 +80,7 @@ export function FeaturesSection() {
             once
             as="h2"
           >
-            Solusi One-Stop untuk Industri Anda
+            Solusi One-Stop untuk Kebutuhan Industri
           </TextAnimate>
           <TextAnimate
             animation="blurInUp"
@@ -95,7 +92,7 @@ export function FeaturesSection() {
             className="mt-4 max-w-3xl mx-auto"
             as="p"
           >
-            Dari pengadaan hingga maintenance, kami menyediakan layanan komprehensif yang disesuaikan dengan kebutuhan spesifik proyek Anda.
+            Dari pengadaan hingga maintenance, kami menggabungkan layanan lintas divisi untuk efisiensi biaya dan waktu.
           </TextAnimate>
         </div>
 

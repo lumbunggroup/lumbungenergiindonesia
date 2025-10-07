@@ -26,7 +26,8 @@
     "@reui": "https://reui.io/r/{name}.json",
     "@magicui": "https://magicui.design/r/{name}.json",
     "@kokonutui": "https://kokonutui.com/r/{name}.json",
-	"@shadcnblocks": "https://registry.shadcnblocks.com/resources/{name}.json",
-	"@shadcndesign": "https://shadcndesign-registry.vercel.app/api/registry/{name}"
+    "@shadcnblocks": "https://registry.shadcnblocks.com/resources/{name}.json",
+    "@shadcndesign": "https://shadcndesign-registry.vercel.app/api/registry/{name}",
+    "@tailark": "https://tailark.com/r/{name}.json"
   }
 }

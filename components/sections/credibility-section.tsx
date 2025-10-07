@@ -50,12 +50,6 @@ export function CredibilitySection() {
       <Container>
         {/* Header */}
         <div className="text-center mb-16">
-          <div>
-            <Badge variant="outline" className="mb-4">
-              <Users className="h-3 w-3 mr-1" />
-              Testimoni & Kredibilitas
-            </Badge>
-          </div>
           <h2 className="mb-6">
             Dipercaya oleh 500+ Perusahaan
           </h2>

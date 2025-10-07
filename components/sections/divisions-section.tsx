@@ -11,9 +11,9 @@ import Image from "next/image"
 const divisions = [
   {
     category: "Divisi Energi",
-    title: "Solusi Energi Terpercaya & Berkelanjutan",
+    title: "Solusi Energi Andal & Berkelanjutan",
     details:
-      "Menyediakan batubara berkualitas tinggi dan biomassa berkelanjutan untuk kebutuhan energi industri Anda. Dengan dokumentasi lengkap, sertifikasi produk, dan jaminan kualitas, kami memastikan pasokan energi yang konsisten, efisien, dan on-time delivery.",
+      "Pasokan batubara dan biomassa (cangkang sawit) yang konsisten, plus solusi PLTS skala industri. Fokus pada kualitas pasokan, kepatuhan, dan ketepatan pengiriman.",
     ctaLink: "#kontak",
     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
   },
@@ -21,7 +21,7 @@ const divisions = [
     category: "Divisi ME & IT Support",
     title: "Engineering Design & Technical Excellence",
     details:
-      "Layanan engineering design, instalasi sistem ME, piping, commissioning, dan IT support dengan standar internasional. Tim bersertifikat kami siap menangani proyek dari perencanaan hingga implementasi dengan HSE compliance dan technical support berkelanjutan.",
+      "Layanan engineering design, instalasi ME & piping, commissioning, serta IT support berkelanjutan dengan perhatian pada HSE dan standar implementasi di lapangan.",
     ctaLink: "#kontak",
     image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
   },
@@ -29,7 +29,7 @@ const divisions = [
     category: "Divisi Logistik",
     title: "Distribusi & Fleet Management Terintegrasi",
     details:
-      "Solusi logistik dan distribusi yang handal untuk batubara, biomassa, dan material industri. Dilengkapi fleet management modern, real-time tracking, dan kepatuhan pada standar keselamatan untuk memastikan pengiriman tepat waktu dan aman.",
+      "Manajemen distribusi untuk energi dan material industri dengan pemantauan proses, koordinasi armada, dan alur dokumentasi yang jelas.",
     ctaLink: "#kontak",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
   },
@@ -45,16 +45,11 @@ export function DivisionsSection() {
       
       <Container>
         <div className="text-center mb-16">
-          <div>
-            <Badge variant="outline" className="mb-4">
-              🏢 Divisi Kami
-            </Badge>
-          </div>
           <h2>
             Perkuat Strategi Bisnis Anda
           </h2>
           <p className="mt-4 max-w-3xl mx-auto">
-            Tingkatkan strategi Anda dengan solusi terintegrasi yang dirancang untuk kesuksesan industri.
+            LEI menyediakan rantai layanan end-to-end: pasokan energi (batubara & biomassa), desain/instalasi PLTS skala industri, ME & IT support, serta logistik multi-komoditas.
           </p>
         </div>
 

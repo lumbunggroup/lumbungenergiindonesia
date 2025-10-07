@@ -62,11 +62,6 @@ const Features05 = () => {
       
       <Container>
         <div className="text-center mb-12">
-          <div>
-            <Badge variant="outline" className="mb-4">
-              ⚡ Layanan Terintegrasi
-            </Badge>
-          </div>
           <h2>
             Solusi One-Stop untuk Industri Anda
           </h2>
