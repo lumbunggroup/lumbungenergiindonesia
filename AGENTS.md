@@ -525,6 +525,373 @@ export default ComponentName
 
 ---
 
+## 16. Copywriting Guidelines (MANDATORY)
+
+**All website copy MUST follow these content standards for consistency and clarity.**
+
+### Tone of Voice:
+1. **Professional**: Kredibel dan terpercaya untuk industri B2B
+2. **Confident**: Menekankan expertise dan track record
+3. **Solution-Oriented**: Fokus pada value proposition dan problem-solving
+4. **Technical**: Menggunakan terminologi industri yang relevan
+5. **Concise**: Singkat, padat, dan mudah dipahami
+
+### Key Messaging Pillars:
+
+#### 1. Integrated Solutions
+```tsx
+// ✅ GOOD: Clear value proposition
+"Solusi One-Stop untuk Kebutuhan Industri"
+"LEI menyediakan rantai layanan end-to-end"
+
+// ❌ AVOID: Vague or generic
+"Solusi terbaik untuk semua kebutuhan"
+"Kami menyediakan berbagai layanan"
+```
+
+#### 2. Quality & Compliance
+```tsx
+// ✅ GOOD: Specific and trustworthy
+"Pasokan batubara dan biomassa yang konsisten dengan dokumentasi lengkap"
+"Fokus pada kualitas pasokan, kepatuhan, dan ketepatan pengiriman"
+
+// ❌ AVOID: Overpromising
+"Kualitas terbaik di dunia"
+"100% sempurna tanpa cacat"
+```
+
+#### 3. Reliability & Expertise
+```tsx
+// ✅ GOOD: Concrete evidence
+"Dipercaya oleh 500+ Perusahaan"
+"Tim bersertifikat dengan standar HSE yang ketat"
+
+// ❌ AVOID: Empty claims
+"Perusahaan terbaik"
+"Nomor satu di Indonesia"
+```
+
+### Content Length Guidelines:
+
+| Element | Recommended Length | Max Length |
+|---------|-------------------|------------|
+| **Section Title (H2)** | 4-8 words | 10 words |
+| **Section Description** | 15-25 words | 35 words |
+| **Card Title (H4)** | 3-6 words | 8 words |
+| **Card Description** | 15-20 words | 30 words |
+| **Division Details** | 20-30 words | 40 words |
+| **CTA Button** | 1-3 words | 4 words |
+
+### Writing Style:
+
+#### ✅ DO:
+```tsx
+// Use active voice
+"LEI menyediakan solusi energi" // ✅
+// NOT: "Solusi energi disediakan oleh LEI" // ❌
+
+// Be specific
+"Pasokan batubara dan biomassa (cangkang sawit)" // ✅
+// NOT: "Pasokan energi berbagai jenis" // ❌
+
+// Focus on benefits
+"Manajemen distribusi dengan pemantauan proses real-time" // ✅
+// NOT: "Kami punya sistem canggih" // ❌
+
+// Use industry terms appropriately
+"HSE compliance, commissioning, fleet management" // ✅
+```
+
+#### ❌ AVOID:
+```tsx
+// Superlatives without proof
+"Yang terbaik", "Paling hebat", "Terpopuler"
+
+// Redundancy
+"Solusi yang solutif", "Kualitas yang berkualitas"
+
+// Jargon overload
+"Leverage synergistic paradigms untuk maximize ROI"
+
+// Marketing fluff
+"Revolusioner", "Game-changing", "One-of-a-kind"
+```
+
+### Content Structure Examples:
+
+#### Section Header Pattern:
+```tsx
+<div className="text-center mb-16">
+  <h2>
+    [Action/Value] untuk [Target Audience]
+  </h2>
+  <p className="mt-4 max-w-3xl mx-auto">
+    [Brief explanation: What we do + How it helps]
+  </p>
+</div>
+
+// Example:
+<h2>Perkuat Strategi Bisnis Anda</h2>
+<p>LEI menyediakan rantai layanan end-to-end: pasokan energi, 
+   desain/instalasi PLTS, ME & IT support, serta logistik.</p>
+```
+
+#### Service/Feature Description:
+```tsx
+// Pattern: [What] + [Specific Details] + [Key Benefit]
+"Pasokan batubara dan biomassa (cangkang sawit) yang konsisten, 
+ plus solusi PLTS skala industri. Fokus pada kualitas pasokan, 
+ kepatuhan, dan ketepatan pengiriman."
+```
+
+#### CTA Guidelines:
+```tsx
+// ✅ Action-oriented, clear intent
+<Button>Hubungi Sales</Button>
+<Button>Pelajari Lebih Lanjut</Button>
+<Button>Kirim Permintaan</Button>
+
+// ❌ Vague or unclear
+<Button>Klik Disini</Button>
+<Button>Info Lebih Lanjut</Button>
+<Button>Submit</Button>
+```
+
+### SEO-Friendly Writing:
+
+```tsx
+// Include relevant keywords naturally
+✅ "Solusi energi industri yang terpercaya. Dari pengadaan 
+    batubara dan biomassa hingga maintenance sistem ME & IT."
+
+❌ "We provide solutions for your needs with quality service 
+    and professional approach."
+```
+
+### Content Review Checklist:
+
+Before publishing copy, verify:
+- [ ] All content is in Bahasa Indonesia
+- [ ] Tone is professional and solution-oriented
+- [ ] No superlatives without evidence
+- [ ] Specific details included (not vague)
+- [ ] Industry terms used correctly
+- [ ] Length within guidelines
+- [ ] CTAs are action-oriented
+- [ ] No marketing fluff or jargon overload
+- [ ] Grammar and spelling checked
+- [ ] Consistent with brand voice
+
+### Reference Documentation:
+
+For complete copywriting structure, see: `docs/copywriting-structure.md`
+
+This document contains:
+- Full landing page copy breakdown
+- Section-by-section content
+- Recommended updates and alternatives
+- SEO keywords and strategy
+
+---
+
+## 17. Asset Management & CDN Usage (MANDATORY)
+
+**ALWAYS use external CDN URLs for static assets to improve performance and avoid repository bloat.**
+
+### Logo & Brand Assets:
+
+#### ✅ CORRECT: Use CDN URLs
+```tsx
+import Image from "next/image"
+
+// Company logo from Vercel Blob Storage
+<Image
+  src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lei.svg"
+  alt="Lumbung Energi Indonesia"
+  width={120}
+  height={40}
+  priority
+/>
+```
+
+#### ❌ WRONG: Local large files
+```tsx
+// DON'T store large SVG/images locally
+<Image src="/lei.svg" alt="..." /> // ❌ (if file > 100KB)
+<Image src="/large-hero.png" alt="..." /> // ❌
+```
+
+### Asset Storage Guidelines:
+
+| Asset Type | Size Limit (Local) | Recommended Storage |
+|------------|-------------------|---------------------|
+| **SVG Logo** | < 50KB | CDN (Vercel Blob) |
+| **PNG/JPG Logo** | < 100KB | CDN |
+| **Hero Images** | Any size | CDN (Unsplash/Blob) |
+| **Icons** | < 10KB | Local `/public` |
+| **Favicons** | < 5KB | Local `/public` |
+| **Videos** | Any size | CDN (Vercel Blob) |
+
+### CDN Sources:
+
+#### 1. Vercel Blob Storage (Primary)
+```tsx
+// For company-specific assets
+const COMPANY_LOGO = "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lei.svg"
+const HERO_VIDEO = "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/coal_mining_video.mp4"
+
+<Image src={COMPANY_LOGO} alt="LEI Logo" width={120} height={40} />
+<video src={HERO_VIDEO} autoPlay loop />
+```
+
+#### 2. Unsplash (For Stock Photos)
+```tsx
+// For placeholder/stock images
+const ENERGY_IMAGE = "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80"
+
+<Image 
+  src={ENERGY_IMAGE} 
+  alt="Energy facility" 
+  fill 
+  className="object-cover" 
+/>
+```
+
+#### 3. Next.js Image Optimization
+```tsx
+// Next.js automatically optimizes external images
+<Image
+  src="https://external-cdn.com/image.jpg"
+  alt="Optimized image"
+  width={600}
+  height={400}
+  quality={85} // Default: 75
+  placeholder="blur" // Optional: blur placeholder
+  blurDataURL="data:image/..." // Optional: custom blur
+/>
+```
+
+### Asset Upload Process:
+
+When adding new assets:
+
+1. **Evaluate Size**: Check if asset should be local or CDN
+2. **Upload to CDN**: 
+   - Use Vercel Blob for company assets
+   - Upload via Vercel dashboard or CLI
+3. **Get URL**: Copy the permanent CDN URL
+4. **Update Code**: Replace local path with CDN URL
+5. **Test**: Verify image loads correctly
+6. **Clean Up**: Remove local file if no longer needed
+
+### Performance Benefits:
+
+#### CDN Advantages:
+- ✅ Faster load times (global edge network)
+- ✅ Smaller repository size
+- ✅ No git conflicts with binary files
+- ✅ Easier asset management
+- ✅ Automatic optimization (compression, format)
+- ✅ Better caching
+
+#### Local File Issues:
+- ❌ Slower git operations
+- ❌ Repository bloat
+- ❌ Merge conflicts on binary files
+- ❌ No automatic optimization
+- ❌ Single server location
+
+### Security Considerations:
+
+```tsx
+// ✅ SAFE: Public assets on CDN
+<Image src="https://cdn.vercel-storage.com/logo.svg" alt="Logo" />
+
+// ⚠️ CAUTION: Sensitive assets should NOT be public
+// Don't upload: client data, internal documents, private keys
+
+// ✅ SAFE: Use environment variables for sensitive URLs
+const PRIVATE_ASSET = process.env.NEXT_PUBLIC_PRIVATE_CDN_URL
+```
+
+### Asset Organization:
+
+```tsx
+// Create a constants file for asset URLs
+// lib/assets.ts
+
+export const ASSETS = {
+  logo: {
+    main: "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lei.svg",
+    icon: "/favicon.ico", // Small, can be local
+  },
+  videos: {
+    hero: "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/coal_mining_video.mp4",
+  },
+  images: {
+    energy: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
+    logistics: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+  },
+} as const
+
+// Usage in components
+import { ASSETS } from "@/lib/assets"
+
+<Image src={ASSETS.logo.main} alt="LEI Logo" width={120} height={40} />
+```
+
+### Migration Checklist:
+
+When migrating from local to CDN:
+
+- [ ] Identify large files (> 100KB)
+- [ ] Upload to CDN (Vercel Blob)
+- [ ] Update all import paths
+- [ ] Test in development
+- [ ] Verify in production
+- [ ] Remove local files
+- [ ] Update `.gitignore` if needed
+- [ ] Document CDN URLs
+
+### Common Patterns:
+
+```tsx
+// Logo Component with CDN
+export const Logo = ({ className }: { className?: string }) => {
+  return (
+    <Image
+      src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lei.svg"
+      alt="Lumbung Energi Indonesia"
+      width={120}
+      height={40}
+      className={cn('h-8 w-auto', className)}
+      priority
+    />
+  )
+}
+
+// Hero Video with CDN
+<video
+  autoPlay
+  loop
+  muted
+  className="size-full object-cover"
+  src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/coal_mining_video.mp4"
+/>
+
+// Responsive Image with CDN
+<div className="relative h-40 rounded-xl overflow-hidden">
+  <Image
+    src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80"
+    alt="Energy facility"
+    fill
+    className="object-cover"
+  />
+</div>
+```
+
+---
+
 ## Summary
 ✅ **DO**: 
 - Use semantic tokens for colors
@@ -535,6 +902,10 @@ export default ComponentName
 - Write all content in Indonesian
 - Use shadcn/ui components
 - Use consistent spacing and layout patterns
+- Follow copywriting guidelines (professional, concise, benefit-focused)
+- Use external CDN for assets > 100KB
+- Store brand assets on Vercel Blob Storage
+- Create asset constants file for organization
 
 ❌ **DON'T**: 
 - Use hardcoded colors
@@ -543,3 +914,7 @@ export default ComponentName
 - Create asymmetric cards in grids
 - Use English for user-facing content
 - Override typography styles unnecessarily
+- Use marketing fluff or empty superlatives
+- Store large assets (> 100KB) in repository
+- Commit binary files without CDN alternative
+- Use vague or generic copywriting
