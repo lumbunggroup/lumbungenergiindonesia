@@ -25,7 +25,7 @@ export default function HeroSection() {
                                         className="h-12 rounded-full bg-white pl-5 pr-3 text-base">
                                         <Link href="#link">
                                             <span className="text-nowrap text-primary">Contact Us</span>
-                                            <ChevronRight className="ml-1 bg-primary" />
+                                            <ChevronRight className="ml-1" />
                                         </Link>
                                     </Button>
                                     {/* <Button
