@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
+import Image from 'next/image'
 
 const CTA = () => {
   return (
@@ -15,9 +16,11 @@ const CTA = () => {
             </div>
             <div className='flex flex-wrap items-center gap-6 max-md:w-full max-md:flex-col md:justify-end'>
               <div className='bg-card-foreground flex w-[200px] items-center gap-4 rounded-md px-6 py-3'>
-                <img
+                <Image
                   src='https://cdn.shadcnstudio.com/ss-assets/brand-logo/apple-icon.png'
                   alt='App Store'
+                  width={34}
+                  height={34}
                   className='size-8.5 invert dark:invert-0'
                 />
                 <div className='flex flex-col items-start'>
@@ -27,9 +30,11 @@ const CTA = () => {
               </div>
 
               <div className='bg-card-foreground flex w-[200px] items-center gap-4 rounded-md px-6 py-3'>
-                <img
+                <Image
                   src='https://cdn.shadcnstudio.com/ss-assets/brand-logo/google-play-icon.png'
                   alt='Google Play'
+                  width={34}
+                  height={34}
                   className='size-8.5'
                 />
                 <div className='flex flex-col items-start'>

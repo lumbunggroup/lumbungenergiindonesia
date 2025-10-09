@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Flame, Sun, Truck, Cog, Shield, Headphones } from "lucide-react"
 import Image from "next/image"
@@ -71,7 +70,7 @@ const Features05 = () => {
         </div>
 
         <div className="mt-10 w-full mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <div key={feature.title}>
               <Card className="flex flex-col h-full border rounded-xl overflow-hidden shadow-none pb-0 hover:shadow-lg hover:shadow-primary/5 transition-all hover:-translate-y-1">
               <CardHeader className="flex-1">

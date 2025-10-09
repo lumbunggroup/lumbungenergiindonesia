@@ -2,8 +2,7 @@
 
 import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
-import { Badge } from "@/components/ui/badge"
-import { Quote, Users, Star } from "lucide-react"
+import { Quote, Star } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
 import {
   Logo01,

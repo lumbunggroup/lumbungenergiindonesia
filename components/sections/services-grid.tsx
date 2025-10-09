@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
-import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { Card, CardHeader } from "@/components/ui/card"
 import { LucideIcon } from "lucide-react"
 
 interface Service {

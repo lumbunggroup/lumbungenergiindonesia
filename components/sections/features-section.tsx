@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/layout/container"
 import { Section } from "@/components/layout/section"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Flame, Sun, Truck, Cog, Shield, Headphones } from "lucide-react"
 import { TextAnimate } from "@/components/ui/text-animate"
