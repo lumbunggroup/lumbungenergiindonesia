@@ -14,7 +14,7 @@ const divisions = [
     title: "Solusi Energi Andal & Berkelanjutan",
     details:
       "Pasokan batubara dan biomassa (cangkang sawit) yang konsisten, plus solusi PLTS skala industri. Fokus pada kualitas pasokan, kepatuhan, dan ketepatan pengiriman.",
-    ctaLink: "#kontak",
+    ctaLink: "/energi",
     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
   },
   {
@@ -22,7 +22,7 @@ const divisions = [
     title: "Engineering Design & Technical Excellence",
     details:
       "Layanan engineering design, instalasi sistem ME & piping, fabrikasi mesin, commissioning, dan proyek konstruksi sipil dengan standar HSE dan implementasi di lapangan.",
-    ctaLink: "#kontak",
+    ctaLink: "/mekanikal-elektrikal",
     image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
   },
   {
@@ -30,7 +30,7 @@ const divisions = [
     title: "Solusi IT & Digital Infrastructure",
     details:
       "Layanan pengadaan perangkat keras, pengembangan jaringan, instalasi sistem keamanan, SOC, server management, dan IT support berkelanjutan untuk operasional bisnis modern.",
-    ctaLink: "#kontak",
+    ctaLink: "/teknologi-informasi",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
   },
   {
@@ -38,7 +38,7 @@ const divisions = [
     title: "Distribusi & Fleet Management Terintegrasi",
     details:
       "Manajemen distribusi untuk energi dan material industri dengan pemantauan proses, koordinasi armada, dan alur dokumentasi yang jelas.",
-    ctaLink: "#kontak",
+    ctaLink: "/logistik",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
   },
 ]
@@ -87,19 +87,10 @@ export function DivisionsSection() {
                 </p>
                 <div>
                   <Button asChild size="lg" className="mt-6">
-                  <Link 
-                    href={division.ctaLink}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      const element = document.querySelector(division.ctaLink)
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" })
-                      }
-                    }}
-                  >
-                    Pelajari Lebih Lanjut <ArrowRight />
-                  </Link>
-                </Button>
+                    <Link href={division.ctaLink}>
+                      Pelajari Lebih Lanjut <ArrowRight />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>

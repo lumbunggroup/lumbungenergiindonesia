@@ -1245,6 +1245,276 @@ When adding Supabase integration:
 
 ---
 
+## 20. Division Detail Pages (MANDATORY)
+
+**Structure for division-specific landing pages.**
+
+### Page Routes:
+- `/energi` - Energy Division
+- `/mekanikal-elektrikal` - Mechanical & Electrical Division
+- `/teknologi-informasi` - Information Technology Division
+- `/logistik` - Logistics Division
+
+### Standard Page Structure:
+
+```tsx
+import { Metadata } from "next"
+import { HeroHeader } from "@/components/header"
+import { Footer } from "@/components/layout/footer"
+import { DivisionHero } from "@/components/sections/division-hero"
+import { ServicesCards } from "@/components/sections/services-cards"
+import { GalleryBento } from "@/components/sections/gallery-bento"
+import { DivisionCTA } from "@/components/sections/division-cta"
+import { Section } from "@/components/layout/section"
+import { Container } from "@/components/layout/container"
+import { Marquee } from "@/components/ui/marquee"
+
+export const metadata: Metadata = {
+  title: "Divisi [Name] - PT Lumbung Energi Indonesia",
+  description: "...",
+  openGraph: { /* ... */ }
+}
+
+export default function DivisionPage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <HeroHeader />
+      <main className="flex-1">
+        <DivisionHero
+          badge="Divisi [Name]"
+          headline="[Headline]"
+          description="[Description]"
+          imageSrc="[Image URL]"
+          imageAlt="[Alt text]"
+        />
+
+        <ServicesCards 
+          title="Layanan Divisi [Name]"
+          description="[Description]"
+          services={services} 
+        />
+
+        <GalleryBento
+          title="Dokumentasi Proyek"
+          description="[Description]"
+          items={galleryItems}
+        />
+
+        {/* Client Logos Marquee */}
+        <Section className="bg-gradient-to-b from-background via-muted/30 to-background">
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="mb-6">Dipercaya oleh 500+ Perusahaan</h2>
+              <p className="max-w-3xl mx-auto">[Description]</p>
+            </div>
+            <div className="mb-20 overflow-hidden">
+              <div className="space-y-8">
+                <Marquee pauseOnHover className="[--duration:40s] [&_svg]:mr-10 mask-x-from-70% mask-x-to-90%">
+                  {/* Logo components */}
+                </Marquee>
+                <Marquee pauseOnHover reverse className="[--duration:40s] [&_svg]:mr-10 mask-x-from-70% mask-x-to-90%">
+                  {/* Logo components */}
+                </Marquee>
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        <DivisionCTA 
+          title="[CTA Title]"
+          description="[CTA Description]"
+        />
+      </main>
+      <Footer />
+    </div>
+  )
+}
+```
+
+### Required Components:
+
+#### 1. DivisionHero
+```tsx
+// File: components/sections/division-hero.tsx
+import { DivisionHero } from "@/components/sections/division-hero"
+
+<DivisionHero
+  badge="Divisi Energi"
+  headline="Solusi Energi Andal & Berkelanjutan"
+  description="Deskripsi singkat tentang divisi dan layanannya"
+  imageSrc="https://images.unsplash.com/..."
+  imageAlt="Descriptive alt text"
+/>
+```
+
+#### 2. ServicesCards
+```tsx
+// File: components/sections/services-cards.tsx
+import { ServicesCards } from "@/components/sections/services-cards"
+
+const services = [
+  {
+    icon: IconComponent,
+    title: "Service Title",
+    description: "Service description",
+    image: "https://images.unsplash.com/...",
+  },
+  // ... more services
+]
+
+<ServicesCards 
+  title="Layanan Kami"
+  description="Description text"
+  services={services} 
+/>
+```
+
+**Features:**
+- 2-column responsive grid
+- Icon + title + description + image per card
+- Image at bottom with rounded corner effect
+- Hover effects with scale and shadow
+- Automatic height matching (h-full)
+
+#### 3. GalleryBento
+```tsx
+// File: components/sections/gallery-bento.tsx
+import { GalleryBento } from "@/components/sections/gallery-bento"
+
+const galleryItems = [
+  {
+    src: "https://images.unsplash.com/...",
+    alt: "Project description",
+    className: "md:col-span-2 md:row-span-2", // Optional: for featured items
+  },
+  // ... more items (recommend 6 items)
+]
+
+<GalleryBento
+  title="Dokumentasi Proyek"
+  description="Portfolio description"
+  items={galleryItems}
+/>
+```
+
+**Features:**
+- Bento-style grid layout
+- Hover effects with image zoom
+- Caption overlay on hover
+- Responsive grid (1 col mobile, 3 cols desktop)
+
+#### 4. DivisionCTA
+```tsx
+// File: components/sections/division-cta.tsx
+// Based on shadcn studio block: cta-section-01
+import { DivisionCTA } from "@/components/sections/division-cta"
+
+<DivisionCTA 
+  title="Siap Memulai Proyek Bersama Kami?"
+  description="Diskusikan kebutuhan Anda dengan tim ahli kami..."
+/>
+```
+
+**Features:**
+- Primary background color (blue brand)
+- White text on blue background
+- Two white buttons: "Contact Us" and "Company Profile"
+- Smooth scroll to contact section
+- Card-based layout with rounded corners
+- Hover scale effects
+
+**Styling:**
+- `bg-primary` container
+- `text-primary-foreground` for all text
+- `bg-white text-primary` for buttons
+- `rounded-3xl` card with shadow
+
+### Content Guidelines for Division Pages:
+
+#### Services Data Structure:
+```tsx
+const services = [
+  {
+    icon: LucideIcon,        // From lucide-react
+    title: "Service Name",   // 3-6 words
+    description: "...",      // 15-20 words
+    image: "CDN URL",        // Unsplash or Vercel Blob
+  },
+]
+```
+
+#### Gallery Data Structure:
+```tsx
+const galleryItems = [
+  {
+    src: "CDN URL",              // Image URL
+    alt: "Descriptive text",     // Project description
+    className: "md:col-span-2",  // Optional: grid span
+  },
+]
+```
+
+### Division-Specific Copywriting:
+
+#### Energi Division:
+- Focus: Reliable energy supply, renewable solutions
+- Keywords: batubara, biomassa, PLTS, pasokan energi
+- Tone: Sustainable, reliable, compliant
+
+#### Mekanikal & Elektrikal:
+- Focus: Engineering excellence, HSE compliance
+- Keywords: engineering design, instalasi, commissioning, fabrikasi
+- Tone: Technical, professional, safety-focused
+
+#### Teknologi Informasi:
+- Focus: Digital infrastructure, security, support
+- Keywords: hardware, network, cybersecurity, IT support
+- Tone: Modern, secure, efficient
+
+#### Logistik:
+- Focus: Integrated distribution, fleet management
+- Keywords: distribusi, tracking, warehouse, dokumentasi
+- Tone: Efficient, transparent, timely
+
+### SEO Requirements:
+
+```tsx
+export const metadata: Metadata = {
+  title: "Divisi [Name] - PT Lumbung Energi Indonesia",
+  description: "[150-160 characters describing division services]",
+  openGraph: {
+    title: "Divisi [Name] - PT Lumbung Energi Indonesia",
+    description: "[Description]",
+    images: [
+      {
+        url: "[Representative image URL]",
+        width: 1200,
+        height: 630,
+        alt: "Divisi [Name] LEI",
+      },
+    ],
+  },
+}
+```
+
+### Checklist for New Division Pages:
+
+When creating a new division page:
+- [ ] Create route in `app/[division-name]/page.tsx`
+- [ ] Add proper metadata (title, description, OG tags)
+- [ ] Define 4 services with icons and images
+- [ ] Prepare 6 gallery items with proper alt text
+- [ ] Write division-specific CTA copy
+- [ ] Use consistent CDN image sources (Unsplash)
+- [ ] Test responsive layout on mobile/tablet/desktop
+- [ ] Verify all images load correctly
+- [ ] Check hover effects work properly
+- [ ] Test CTA button navigation
+- [ ] Add link from main DivisionsSection
+- [ ] Update sitemap if needed
+
+---
+
 ## Summary
 ✅ **DO**: 
 - Use semantic tokens for colors
@@ -1263,6 +1533,9 @@ When adding Supabase integration:
 - Create RLS policies for all public-facing tables
 - Use API routes for Supabase operations
 - Test form submissions end-to-end
+- Use DivisionHero, ServicesCards, GalleryBento, DivisionCTA for division pages
+- Include 4 services and 6 gallery items per division
+- Add proper SEO metadata for each division page
 
 ❌ **DON'T**: 
 - Use hardcoded colors
@@ -1278,3 +1551,5 @@ When adding Supabase integration:
 - Use incorrect environment variable names (missing NEXT_PUBLIC_)
 - Make direct Supabase calls from client without RLS policies
 - Skip error handling in API routes
+- Create division pages without proper component structure
+- Mix different CTA section styles (always use DivisionCTA)
