@@ -52,6 +52,7 @@ export function Footer() {
                   alt="Lumbung Energi Indonesia"
                   width={160}
                   height={48}
+                  style={{ width: 'auto', height: 'auto' }}
                   className="h-12 w-auto"
                 />
               </div>

@@ -8,6 +8,7 @@ export const Logo = ({ className }: { className?: string }) => {
             alt="Lumbung Energi Indonesia"
             width={120}
             height={40}
+            style={{ width: 'auto', height: 'auto' }}
             className={cn('h-8 w-auto', className)}
             priority
         />
