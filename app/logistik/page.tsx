@@ -75,34 +75,7 @@ const services = [
   },
 ]
 
-const galleryItems = [
-  {
-    src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-    alt: "Armada truk logistik",
-    className: "md:col-span-2 md:row-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80",
-    alt: "Proses loading material",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80",
-    alt: "GPS tracking dashboard",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80",
-    alt: "Fasilitas warehouse",
-    className: "md:col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80",
-    alt: "Dokumentasi pengiriman",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80",
-    alt: "Peralatan material handling",
-  },
-]
+
 
 export default function LogistikPage() {
   return (
@@ -126,7 +99,7 @@ export default function LogistikPage() {
         <GalleryBento
           title="Dokumentasi Proyek"
           description="Portfolio layanan distribusi dan fleet management untuk berbagai kebutuhan industri"
-          items={galleryItems}
+          category="logistik"
         />
 
         <Section className="bg-gradient-to-b from-background via-muted/30 to-background">

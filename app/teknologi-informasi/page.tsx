@@ -75,34 +75,7 @@ const services = [
   },
 ]
 
-const galleryItems = [
-  {
-    src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
-    alt: "Instalasi server rack",
-    className: "md:col-span-2 md:row-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80",
-    alt: "Network cabling",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=800&q=80",
-    alt: "Sistem keamanan CCTV",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=800&q=80",
-    alt: "SOC monitoring center",
-    className: "md:col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
-    alt: "Tim IT support",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&q=80",
-    alt: "Infrastruktur data center",
-  },
-]
+
 
 export default function TeknologiInformasiPage() {
   return (
@@ -126,7 +99,7 @@ export default function TeknologiInformasiPage() {
         <GalleryBento
           title="Dokumentasi Proyek"
           description="Portfolio implementasi IT infrastructure dan security solutions"
-          items={galleryItems}
+          category="teknologi-informasi"
         />
 
         <Section className="bg-gradient-to-b from-background via-muted/30 to-background">

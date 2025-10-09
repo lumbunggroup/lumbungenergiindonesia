@@ -75,34 +75,7 @@ const services = [
   },
 ]
 
-const galleryItems = [
-  {
-    src: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80",
-    alt: "Instalasi sistem piping",
-    className: "md:col-span-2 md:row-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
-    alt: "Perakitan panel elektrikal",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80",
-    alt: "Workshop fabrikasi mesin",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
-    alt: "Lokasi konstruksi",
-    className: "md:col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&q=80",
-    alt: "Proses commissioning",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
-    alt: "Kepatuhan HSE di lapangan",
-  },
-]
+
 
 export default function MekanikalElektrikalPage() {
   return (
@@ -126,7 +99,7 @@ export default function MekanikalElektrikalPage() {
         <GalleryBento
           title="Dokumentasi Proyek"
           description="Portfolio proyek engineering dan instalasi ME yang telah kami selesaikan"
-          items={galleryItems}
+          category="mekanikal-elektrikal"
         />
 
         <Section className="bg-gradient-to-b from-background via-muted/30 to-background">

@@ -75,34 +75,7 @@ const services = [
   },
 ]
 
-const galleryItems = [
-  {
-    src: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
-    alt: "Fasilitas penyimpanan batubara",
-    className: "md:col-span-2 md:row-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80",
-    alt: "Biomassa cangkang sawit",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
-    alt: "Instalasi panel surya industri",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
-    alt: "PLTS rooftop skala besar",
-    className: "md:col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80",
-    alt: "Armada pengiriman energi",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
-    alt: "Kontrol kualitas laboratorium",
-  },
-]
+
 
 export default function EnergiPage() {
   return (
@@ -126,7 +99,7 @@ export default function EnergiPage() {
         <GalleryBento
           title="Dokumentasi Proyek"
           description="Portofolio proyek energi yang telah kami kerjakan untuk berbagai industri"
-          items={galleryItems}
+          category="energi"
         />
 
         <Section className="bg-gradient-to-b from-background via-muted/30 to-background">
