@@ -1515,6 +1515,232 @@ When creating a new division page:
 
 ---
 
+## 21. Image Zoom Functionality (MANDATORY)
+
+**All gallery images MUST support zoom functionality using the ImageZoom component.**
+
+### Setup Requirements:
+
+#### 1. CSS Import (Required Once):
+```tsx
+// app/globals.css - Add this import at the top
+@import "react-medium-image-zoom/dist/styles.css";
+```
+
+#### 2. ImageZoom Component Usage:
+
+```tsx
+import { ImageZoom } from "@/components/ui/shadcn-io/image-zoom"
+import Image from "next/image"
+
+// ✅ CORRECT: Gallery image with zoom
+<div className="group relative overflow-hidden rounded-xl border border-border bg-card">
+  <ImageZoom className="!absolute !inset-0 !flex !items-center !justify-center">
+    <div className="!absolute !inset-0">
+      <Image
+        src={imageUrl}
+        alt="Description"
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="!object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+    </div>
+  </ImageZoom>
+  
+  {/* Overlay elements need pointer-events-none */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+  <div className="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform pointer-events-none">
+    <p className="text-white text-sm font-medium">
+      {description}
+    </p>
+  </div>
+</div>
+```
+
+### Key Implementation Rules:
+
+#### 1. Structure Pattern (MANDATORY):
+```tsx
+// Parent container with relative positioning
+<div className="relative ...">
+  
+  // ImageZoom wrapper with absolute positioning
+  <ImageZoom className="!absolute !inset-0 !flex !items-center !justify-center">
+    
+    // Inner div with absolute positioning for Image
+    <div className="!absolute !inset-0">
+      <Image fill ... />
+    </div>
+    
+  </ImageZoom>
+  
+  // Overlay elements with pointer-events-none
+  <div className="... pointer-events-none" />
+</div>
+```
+
+**Why this structure:**
+- Double absolute positioning (`ImageZoom` + inner `div`) ensures proper height calculation
+- `!important` flags override ImageZoom's default styles
+- `pointer-events-none` on overlays allows clicks to reach ImageZoom
+
+#### 2. Sizes Prop Configuration:
+
+Calculate `sizes` based on grid layout to optimize image loading:
+
+```tsx
+// For bento/featured items (spanning 2 columns):
+sizes="(max-width: 768px) 100vw, 66vw"
+
+// For normal grid items (1 column):
+sizes="(max-width: 768px) 100vw, 33vw"
+
+// Example with dynamic sizing:
+const sizes = index === 0 || index === 3 
+  ? "(max-width: 768px) 100vw, 66vw"  // Large items
+  : "(max-width: 768px) 100vw, 33vw"  // Normal items
+```
+
+**Sizes prop pattern:**
+- Mobile (`max-width: 768px`): Use `100vw` (full viewport width)
+- Desktop: Calculate based on grid columns (e.g., `33vw` for 3-column, `66vw` for 2-column)
+
+#### 3. Overlay Elements:
+
+**CRITICAL:** All overlay elements MUST have `pointer-events-none` to allow zoom clicks:
+
+```tsx
+// ✅ CORRECT: Overlays don't block clicks
+<div className="... pointer-events-none" />
+
+// ❌ WRONG: Overlays block ImageZoom clicks
+<div className="..." /> // Missing pointer-events-none
+```
+
+### GalleryBento Implementation Example:
+
+```tsx
+"use client"
+
+import { ImageZoom } from "@/components/ui/shadcn-io/image-zoom"
+import Image from "next/image"
+
+export function GalleryBento({ items }: { items: GalleryItem[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[240px]">
+      {items.map((item, index) => {
+        const className = index === 0 ? "md:col-span-2 md:row-span-2" : ""
+        const sizes = index === 0 || index === 3 
+          ? "(max-width: 768px) 100vw, 66vw"
+          : "(max-width: 768px) 100vw, 33vw"
+        
+        return (
+          <div
+            key={item.id}
+            className={cn(
+              "group relative overflow-hidden rounded-xl border border-border bg-card hover:shadow-xl transition-all",
+              className
+            )}
+          >
+            <ImageZoom className="!absolute !inset-0 !flex !items-center !justify-center">
+              <div className="!absolute !inset-0">
+                <Image
+                  src={item.image_url}
+                  alt={item.description}
+                  fill
+                  sizes={sizes}
+                  className="!object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            </ImageZoom>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform pointer-events-none">
+              <p className="text-white text-sm font-medium">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+```
+
+### Common Issues & Solutions:
+
+#### ❌ Issue: Images have height of 0
+```tsx
+// WRONG: Missing nested structure
+<ImageZoom>
+  <Image fill />  // No relative container
+</ImageZoom>
+```
+
+✅ **Solution:** Use double absolute positioning:
+```tsx
+<ImageZoom className="!absolute !inset-0">
+  <div className="!absolute !inset-0">
+    <Image fill />
+  </div>
+</ImageZoom>
+```
+
+#### ❌ Issue: Zoom doesn't trigger on click
+```tsx
+// WRONG: Overlay blocks clicks
+<div className="absolute inset-0 ..." />  // No pointer-events-none
+```
+
+✅ **Solution:** Add `pointer-events-none` to all overlays:
+```tsx
+<div className="absolute inset-0 ... pointer-events-none" />
+```
+
+#### ❌ Issue: Console warnings about missing sizes
+```tsx
+// WRONG: No sizes prop
+<Image fill src="..." alt="..." />
+```
+
+✅ **Solution:** Always include sizes prop:
+```tsx
+<Image fill sizes="(max-width: 768px) 100vw, 33vw" src="..." alt="..." />
+```
+
+### Testing Checklist:
+
+When implementing image zoom:
+- [ ] CSS imported in `app/globals.css`
+- [ ] ImageZoom wraps Image with nested div structure
+- [ ] Parent container has `relative` positioning
+- [ ] ImageZoom has `!absolute !inset-0` classes
+- [ ] Inner div has `!absolute !inset-0` classes
+- [ ] Image has proper `sizes` prop based on layout
+- [ ] All overlays have `pointer-events-none`
+- [ ] Images load with proper dimensions (no height: 0)
+- [ ] Click on image opens zoom modal
+- [ ] Modal can be closed (click outside or ESC)
+- [ ] No console warnings about images
+- [ ] Hover effects still work (scale, gradient, caption)
+
+### Integration with Division Pages:
+
+All division pages use `GalleryBento` component which includes zoom functionality:
+
+```tsx
+// Division page (energi, logistik, etc.)
+<GalleryBento
+  title="Dokumentasi Proyek"
+  description="Portfolio description"
+  category="energi" // Loads from Supabase
+/>
+```
+
+**Note:** GalleryBento component already implements ImageZoom correctly, so division pages automatically get zoom functionality.
+
+---
+
 ## Summary
 ✅ **DO**: 
 - Use semantic tokens for colors
@@ -1536,6 +1762,9 @@ When creating a new division page:
 - Use DivisionHero, ServicesCards, GalleryBento, DivisionCTA for division pages
 - Include 4 services and 6 gallery items per division
 - Add proper SEO metadata for each division page
+- Implement ImageZoom for all gallery images with proper nested structure
+- Add pointer-events-none to overlays to allow zoom clicks
+- Configure sizes prop based on grid layout for optimal loading
 
 ❌ **DON'T**: 
 - Use hardcoded colors
@@ -1553,3 +1782,6 @@ When creating a new division page:
 - Skip error handling in API routes
 - Create division pages without proper component structure
 - Mix different CTA section styles (always use DivisionCTA)
+- Wrap Image with ImageZoom without nested div structure
+- Forget pointer-events-none on overlays (blocks zoom clicks)
+- Omit sizes prop on images with fill (causes console warnings)
