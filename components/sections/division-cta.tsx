@@ -26,7 +26,7 @@ export function DivisionCTA({
   return (
     <section className='bg-background pb-8 sm:pb-16 lg:pb-24'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <Card className='rounded-3xl border-none bg-primary shadow-lg py-8 sm:py-16 lg:py-24'>
+        <Card className='rounded-3xl border-none bg-primary shadow-lg py-8 sm:py-16 lg:py-16'>
           <CardContent className='flex flex-wrap items-center justify-between gap-8 px-8 sm:flex-nowrap sm:px-16 lg:px-24'>
             <div className='max-w-xs lg:max-w-lg'>
               <h2 className='mb-4 text-primary-foreground'>

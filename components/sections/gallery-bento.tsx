@@ -51,7 +51,7 @@ export function GalleryBento({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform">
-                <p className="text-sm font-medium">
+                <p className="text-white text-sm font-medium">
                   {item.alt}
                 </p>
               </div>

@@ -39,7 +39,7 @@ export function ServicesCards({
           </p>
         </div>
 
-        <div className="mt-10 w-full mx-auto grid md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-8">
+        <div className="mt-10 w-full mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
           {services.map((service) => (
             <div key={service.title} className="h-full">
               <Card className="flex flex-col h-full border rounded-xl overflow-hidden shadow-none pb-0 hover:shadow-lg hover:shadow-primary/5 transition-all hover:-translate-y-1">
