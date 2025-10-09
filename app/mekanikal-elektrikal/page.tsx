@@ -25,15 +25,26 @@ export const metadata: Metadata = {
   description: "Engineering design dan technical excellence. Layanan instalasi sistem ME, piping, fabrikasi mesin, commissioning, dan konstruksi sipil dengan standar HSE ketat.",
   openGraph: {
     title: "Divisi Mekanikal & Elektrikal - PT Lumbung Energi Indonesia",
-    description: "Engineering design dan technical excellence untuk proyek industri Anda",
+    description: "Engineering design dan technical excellence untuk proyek industri Anda. Instalasi sistem ME, piping, fabrikasi mesin, dan commissioning dengan standar HSE ketat.",
+    type: "website",
+    locale: "id_ID",
+    siteName: "PT Lumbung Energi Indonesia",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/mekanikal-elektrikal`,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80",
+        url: "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp",
         width: 1200,
         height: 630,
-        alt: "Divisi Mekanikal & Elektrikal LEI",
+        alt: "Divisi Mekanikal & Elektrikal - Lumbung Energi Indonesia",
+        type: "image/webp",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divisi Mekanikal & Elektrikal - PT Lumbung Energi Indonesia",
+    description: "Engineering design dan technical excellence untuk proyek industri Anda. Instalasi sistem ME, piping, fabrikasi mesin, dan commissioning dengan standar HSE ketat.",
+    images: ["https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp"],
   },
 }
 

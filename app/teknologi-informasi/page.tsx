@@ -25,15 +25,26 @@ export const metadata: Metadata = {
   description: "Solusi IT dan digital infrastructure. Pengadaan hardware, network infrastructure, security & SOC, dan managed IT support untuk operasional bisnis modern.",
   openGraph: {
     title: "Divisi Teknologi Informasi - PT Lumbung Energi Indonesia",
-    description: "Infrastruktur IT yang andal untuk mendukung operasional bisnis modern",
+    description: "Infrastruktur IT yang andal untuk mendukung operasional bisnis modern. Pengadaan hardware, network infrastructure, security & SOC, dan managed IT support.",
+    type: "website",
+    locale: "id_ID",
+    siteName: "PT Lumbung Energi Indonesia",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/teknologi-informasi`,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80",
+        url: "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp",
         width: 1200,
         height: 630,
-        alt: "Divisi Teknologi Informasi LEI",
+        alt: "Divisi Teknologi Informasi - Lumbung Energi Indonesia",
+        type: "image/webp",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divisi Teknologi Informasi - PT Lumbung Energi Indonesia",
+    description: "Infrastruktur IT yang andal untuk mendukung operasional bisnis modern. Pengadaan hardware, network infrastructure, security & SOC, dan managed IT support.",
+    images: ["https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp"],
   },
 }
 

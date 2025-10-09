@@ -25,15 +25,26 @@ export const metadata: Metadata = {
   description: "Solusi energi andal dan berkelanjutan. Pasokan batubara, biomassa (cangkang sawit), dan instalasi PLTS skala industri dengan standar kualitas tinggi.",
   openGraph: {
     title: "Divisi Energi - PT Lumbung Energi Indonesia",
-    description: "Solusi energi andal dan berkelanjutan untuk kebutuhan industri Anda",
+    description: "Solusi energi andal dan berkelanjutan untuk kebutuhan industri Anda. Pasokan batubara, biomassa, dan instalasi PLTS dengan standar kualitas tinggi.",
+    type: "website",
+    locale: "id_ID",
+    siteName: "PT Lumbung Energi Indonesia",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/energi`,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&q=80",
+        url: "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp",
         width: 1200,
         height: 630,
-        alt: "Divisi Energi LEI",
+        alt: "Divisi Energi - Lumbung Energi Indonesia",
+        type: "image/webp",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divisi Energi - PT Lumbung Energi Indonesia",
+    description: "Solusi energi andal dan berkelanjutan untuk kebutuhan industri Anda. Pasokan batubara, biomassa, dan instalasi PLTS dengan standar kualitas tinggi.",
+    images: ["https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp"],
   },
 }
 

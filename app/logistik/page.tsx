@@ -25,15 +25,26 @@ export const metadata: Metadata = {
   description: "Distribusi dan fleet management terintegrasi. Manajemen distribusi energi dan material industri dengan pemantauan real-time dan dokumentasi lengkap.",
   openGraph: {
     title: "Divisi Logistik - PT Lumbung Energi Indonesia",
-    description: "Distribusi dan fleet management terintegrasi untuk kebutuhan industri Anda",
+    description: "Distribusi dan fleet management terintegrasi untuk kebutuhan industri Anda. Manajemen distribusi energi dan material dengan pemantauan real-time dan dokumentasi lengkap.",
+    type: "website",
+    locale: "id_ID",
+    siteName: "PT Lumbung Energi Indonesia",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/logistik`,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80",
+        url: "https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp",
         width: 1200,
         height: 630,
-        alt: "Divisi Logistik LEI",
+        alt: "Divisi Logistik - Lumbung Energi Indonesia",
+        type: "image/webp",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divisi Logistik - PT Lumbung Energi Indonesia",
+    description: "Distribusi dan fleet management terintegrasi untuk kebutuhan industri Anda. Manajemen distribusi energi dan material dengan pemantauan real-time dan dokumentasi lengkap.",
+    images: ["https://31erzxwc41uobyzd.public.blob.vercel-storage.com/lumbungenergiindonesia.webp"],
   },
 }
 
