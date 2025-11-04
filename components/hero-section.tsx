@@ -46,8 +46,11 @@ export default function HeroSection() {
                             <video
                                 autoPlay
                                 loop
+                                muted
+                                playsInline
+                                preload="metadata"
                                 className="size-full object-cover opacity-100 dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-                                src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/coal_mining_video.mp4"></video>
+                                src="https://31erzxwc41uobyzd.public.blob.vercel-storage.com/coal_mining_video_2.mp4"></video>
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#002D6D]/70 rounded-3xl lg:rounded-[3rem] pointer-events-none"></div>
                         </div>
                     </div>
