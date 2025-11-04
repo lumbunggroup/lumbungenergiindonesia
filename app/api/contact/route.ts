@@ -45,31 +45,24 @@ export async function POST(request: NextRequest) {
     const utmMedium = request.nextUrl.searchParams.get("utm_medium") || undefined
     const utmCampaign = request.nextUrl.searchParams.get("utm_campaign") || undefined
 
-    // Save to Supabase (optional during build)
-    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    // Save to Turso DB via Drizzle ORM
+    if (process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN) {
       try {
-        const { createClient } = await import("@supabase/supabase-js")
-        const supabase = createClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        )
+        const { db } = await import("@/lib/db")
+        const { leads } = await import("@/lib/db/schema")
         
-        const { error } = await supabase.from("leads").insert({
+        await db.insert(leads).values({
           name: validatedData.name,
           email: validatedData.email,
           company: validatedData.company,
-          phone: validatedData.phone || null,
-          topic: validatedData.topic || null,
+          phone: validatedData.phone,
+          topic: validatedData.topic,
           message: validatedData.message,
           utm_source: utmSource,
           utm_medium: utmMedium,
           utm_campaign: utmCampaign,
           status: "new",
         })
-
-        if (error) {
-          console.error("Supabase error:", error)
-        }
       } catch (error) {
         console.error("Database error:", error)
         // Continue even if database save fails

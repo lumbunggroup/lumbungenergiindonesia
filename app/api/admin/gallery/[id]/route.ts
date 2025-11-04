@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
-import { supabaseAdmin } from "@/lib/supabase"
+import { db } from "@/lib/db"
+import { gallery } from "@/lib/db/schema"
+import { eq } from "drizzle-orm"
 
 // GET: Get single gallery item
 export async function GET(
@@ -9,14 +11,13 @@ export async function GET(
   try {
     const { id } = await params
 
-    const { data, error } = await supabaseAdmin
-      .from("gallery")
-      .select("*")
-      .eq("id", id)
-      .single()
+    const [data] = await db
+      .select()
+      .from(gallery)
+      .where(eq(gallery.id, id))
+      .limit(1)
 
-    if (error) {
-      console.error("Supabase error:", error)
+    if (!data) {
       return NextResponse.json(
         { error: "Gallery tidak ditemukan" },
         { status: 404 }
@@ -25,7 +26,7 @@ export async function GET(
 
     return NextResponse.json({ data }, { status: 200 })
   } catch (error) {
-    console.error("API error:", error)
+    console.error("Database error:", error)
     return NextResponse.json(
       { error: "Terjadi kesalahan server" },
       { status: 500 }
@@ -42,30 +43,28 @@ export async function PATCH(
     const { id } = await params
     const body = await request.json()
 
-    const { data, error } = await supabaseAdmin
-      .from("gallery")
-      .update({
+    const [updated] = await db
+      .update(gallery)
+      .set({
         image_url: body.image_url,
         description: body.description,
         category: body.category,
         order: body.order,
-        updated_at: new Date().toISOString(),
+        updated_at: new Date(),
       })
-      .eq("id", id)
-      .select()
-      .single()
+      .where(eq(gallery.id, id))
+      .returning()
 
-    if (error) {
-      console.error("Supabase error:", error)
+    if (!updated) {
       return NextResponse.json(
-        { error: "Gagal mengupdate data gallery" },
-        { status: 500 }
+        { error: "Gallery tidak ditemukan" },
+        { status: 404 }
       )
     }
 
-    return NextResponse.json({ data }, { status: 200 })
+    return NextResponse.json({ data: updated }, { status: 200 })
   } catch (error) {
-    console.error("API error:", error)
+    console.error("Database error:", error)
     return NextResponse.json(
       { error: "Terjadi kesalahan server" },
       { status: 500 }
@@ -81,25 +80,16 @@ export async function DELETE(
   try {
     const { id } = await params
 
-    const { error } = await supabaseAdmin
-      .from("gallery")
-      .delete()
-      .eq("id", id)
-
-    if (error) {
-      console.error("Supabase error:", error)
-      return NextResponse.json(
-        { error: "Gagal menghapus data gallery" },
-        { status: 500 }
-      )
-    }
+    await db
+      .delete(gallery)
+      .where(eq(gallery.id, id))
 
     return NextResponse.json(
       { message: "Gallery berhasil dihapus" },
       { status: 200 }
     )
   } catch (error) {
-    console.error("API error:", error)
+    console.error("Database error:", error)
     return NextResponse.json(
       { error: "Terjadi kesalahan server" },
       { status: 500 }

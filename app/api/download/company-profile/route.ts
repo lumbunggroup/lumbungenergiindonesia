@@ -5,18 +5,15 @@ import { readFile } from "fs/promises"
 export async function GET(request: NextRequest) {
   try {
     // Track download (optional) - skip during build
-    if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    if (process.env.NODE_ENV === "production" && process.env.TURSO_DATABASE_URL) {
       try {
-        const { createClient } = await import("@supabase/supabase-js")
-        const supabase = createClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        )
+        const { db } = await import("@/lib/db")
+        const { downloads } = await import("@/lib/db/schema")
         
         const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip")
         const userAgent = request.headers.get("user-agent")
 
-        await supabase.from("downloads").insert({
+        await db.insert(downloads).values({
           ip_address: ip,
           user_agent: userAgent,
         })

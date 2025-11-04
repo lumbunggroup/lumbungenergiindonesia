@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
-import { supabase, supabaseAdmin } from "@/lib/supabase"
+import { db } from "@/lib/db"
+import { gallery } from "@/lib/db/schema"
+import { eq, asc } from "drizzle-orm"
 
 // GET: List all gallery items or filter by category
 export async function GET(request: NextRequest) {
@@ -7,28 +9,23 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const category = searchParams.get("category")
 
-    let query = supabase
-      .from("gallery")
-      .select("*")
-      .order("order", { ascending: true })
-
+    let data
     if (category) {
-      query = query.eq("category", category)
-    }
-
-    const { data, error } = await query
-
-    if (error) {
-      console.error("Supabase error:", error)
-      return NextResponse.json(
-        { error: "Gagal mengambil data gallery" },
-        { status: 500 }
-      )
+      data = await db
+        .select()
+        .from(gallery)
+        .where(eq(gallery.category, category as any))
+        .orderBy(asc(gallery.order))
+    } else {
+      data = await db
+        .select()
+        .from(gallery)
+        .orderBy(asc(gallery.order))
     }
 
     return NextResponse.json({ data }, { status: 200 })
   } catch (error) {
-    console.error("API error:", error)
+    console.error("Database error:", error)
     return NextResponse.json(
       { error: "Terjadi kesalahan server" },
       { status: 500 }
@@ -49,28 +46,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { data, error } = await supabaseAdmin
-      .from("gallery")
-      .insert({
+    const [newItem] = await db
+      .insert(gallery)
+      .values({
         image_url: body.image_url,
         description: body.description,
         category: body.category,
         order: body.order || 0,
       })
-      .select()
-      .single()
+      .returning()
 
-    if (error) {
-      console.error("Supabase error:", error)
-      return NextResponse.json(
-        { error: "Gagal menyimpan data gallery" },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json({ data }, { status: 201 })
+    return NextResponse.json({ data: newItem }, { status: 201 })
   } catch (error) {
-    console.error("API error:", error)
+    console.error("Database error:", error)
     return NextResponse.json(
       { error: "Terjadi kesalahan server" },
       { status: 500 }
