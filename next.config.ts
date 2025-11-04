@@ -32,6 +32,30 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Aggressive caching for Vercel Blob Storage assets
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "31erzxwc41uobyzd.public.blob.vercel-storage.com",
+          },
+        ],
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=31536000",
+          },
+          {
+            key: "Vercel-CDN-Cache-Control",
+            value: "public, max-age=31536000",
+          },
+        ],
+      },
     ];
   },
 };

@@ -3,6 +3,8 @@ import { db } from "@/lib/db"
 import { gallery } from "@/lib/db/schema"
 import { eq, asc } from "drizzle-orm"
 
+type GalleryCategory = 'energi' | 'logistik' | 'mekanikal-elektrikal' | 'teknologi-informasi'
+
 // GET: List all gallery items or filter by category
 export async function GET(request: NextRequest) {
   try {
@@ -14,7 +16,7 @@ export async function GET(request: NextRequest) {
       data = await db
         .select()
         .from(gallery)
-        .where(eq(gallery.category, category as any))
+        .where(eq(gallery.category, category as GalleryCategory))
         .orderBy(asc(gallery.order))
     } else {
       data = await db
